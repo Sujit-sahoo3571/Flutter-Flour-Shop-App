@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class UserSelect extends StatelessWidget {
+  const UserSelect({Key? key}) : super(key: key);
 
   final loremText =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ultrices nisl nisl, quis consequat turpis molestie eget. Aliquam purus massa, tincidunt eget felis quis, ultrices congue lorem. Donec dui quam, facilisis eget orci nec, posuere venenatis felis. Pellentesque ut lectus vitae enim vulputate";
@@ -10,7 +10,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text("Hello User"),
       ),
       body: Container(
         color: Colors.black,

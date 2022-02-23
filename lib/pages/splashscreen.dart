@@ -1,6 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_flour_shop/pages/home.dart';
+import 'package:flutter_flour_shop/pages/usercheck.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -15,7 +15,7 @@ class SplashScreen extends StatelessWidget {
           height: 200.0,
         ),
       ),
-      nextScreen: Home(),
+      nextScreen: UserSelect(),
       splashTransition: SplashTransition.scaleTransition,
       backgroundColor: Colors.green,
     );
