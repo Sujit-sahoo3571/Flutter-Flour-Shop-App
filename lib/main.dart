@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/pages/SplashScreen.dart';
 import 'package:flutter_flour_shop/pages/loginpage.dart';
 import 'package:flutter_flour_shop/pages/usercheck.dart';
+import 'package:flutter_flour_shop/services/authservice.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Flutter Flour Shop",
-      home: LoginPage()        //UserSelect(), // SplashScreen()
+      home:  AuthServices().handleAuth()     //LoginPage(),        //UserSelect(), // SplashScreen()
     );
   }
 }

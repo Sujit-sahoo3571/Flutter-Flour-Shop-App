@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_flour_shop/services/authservice.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -27,8 +28,8 @@ class _LoginPageState extends State<LoginPage> {
 
   // To check field during submit
   checkField() {
-    final form = formKey.currentState;
-    if (form!.validate()) {
+    final form = formKey.currentState!;
+    if (form.validate()) {
       form.save();
       return true;
     }
@@ -39,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("LogIn "),
+        title: Text("LogIn page"),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -125,7 +126,7 @@ class _LoginPageState extends State<LoginPage> {
                   UnderlineInputBorder(borderSide: BorderSide(color: green)),
             ),
             obscureText: true,
-            onChanged: (value) => this.email = value,
+            onChanged: (value) => this.password = value,
             validator: (value) =>
                 value!.isEmpty ? 'Password is required ' : null,
           ),
@@ -153,7 +154,10 @@ class _LoginPageState extends State<LoginPage> {
             height: 50.0,
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              if(checkField())
+              AuthServices().signIn(email, password, context);
+            },
             child: Container(
               height: 50.0,
               child: Material(
@@ -197,8 +201,9 @@ class _LoginPageState extends State<LoginPage> {
                   //   child: ImageIcon(
                   //     AssetImage('assets/images/google.png'),
                   //     size: 15.0,
+
                   //   ),
-                  // ),// overflow image TODO ICON
+                  // ),//  image blacked
                   SizedBox(
                     width: 10.0,
                   ),
