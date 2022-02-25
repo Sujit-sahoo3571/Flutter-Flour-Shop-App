@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
+import 'package:flutter_flour_shop/pages/home_page.dart';
+import 'package:flutter_flour_shop/services/authservice.dart';
 
 class UserSelect extends StatelessWidget {
   const UserSelect({Key? key}) : super(key: key);
@@ -64,7 +66,11 @@ class UserSelect extends StatelessWidget {
                         width: 250.0,
                         height: 60.0,
                         child: ElevatedButton(
-                            onPressed: () {}, child: Text('Guest'))),
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => HomePage()));
+                            },
+                            child: Text('Guest'))),
                     SizedBox(
                       height: 10.0,
                     ),
@@ -72,7 +78,10 @@ class UserSelect extends StatelessWidget {
                       width: 250.0,
                       height: 60.0,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                           Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => AuthServices().handleAuth()));
+                        },
                         child: Text('LogIn'),
                         style: ButtonStyle(
                           backgroundColor:

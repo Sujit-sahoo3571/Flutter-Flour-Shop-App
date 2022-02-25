@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_flour_shop/pages/SplashScreen.dart';
 import 'package:flutter_flour_shop/pages/loginpage.dart';
+import 'package:flutter_flour_shop/pages/splashscreen.dart';
 import 'package:flutter_flour_shop/pages/usercheck.dart';
 import 'package:flutter_flour_shop/services/authservice.dart';
 
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Flutter Flour Shop",
-      home:  AuthServices().handleAuth()     //LoginPage(),        //UserSelect(), // SplashScreen()
+      home: SplashScreen() ,// AuthServices().handleAuth()     //LoginPage(),        //UserSelect(), // SplashScreen()
     );
   }
 }

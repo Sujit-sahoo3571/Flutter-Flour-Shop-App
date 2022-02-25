@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_flour_shop/pages/reset_page.dart';
-import 'package:flutter_flour_shop/pages/signup_pages.dart';
 import 'package:flutter_flour_shop/services/authservice.dart';
+import 'package:flutter_flour_shop/services/error_handler.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final formKey = new GlobalKey<FormState>();
 
   String email = '', password = '';
@@ -42,20 +41,20 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("LogIn page"),
+        title: Text("SignUp page"),
       ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Form(
           key: formKey,
-          child: _buildLoginForm(),
+          child: _buildSignUpForm(),
         ),
       ),
     );
   }
 
-  _buildLoginForm() {
+  _buildSignUpForm() {
     return Padding(
       padding: const EdgeInsets.only(left: 25.0, right: 25.0),
       child: ListView(
@@ -69,24 +68,15 @@ class _LoginPageState extends State<LoginPage> {
             child: Stack(
               children: [
                 Text(
-                  "Hello",
+                  "SignUp",
                   style: TextStyle(
                     fontFamily: "Truneo",
                     fontSize: 60.0,
                   ),
                 ),
                 Positioned(
-                    top: 55.0,
-                    child: Text(
-                      "There",
-                      style: TextStyle(
-                        fontFamily: "Truneo",
-                        fontSize: 60.0,
-                      ),
-                    )),
-                Positioned(
-                    top: 114.0,
-                    left: 189.0,
+                    top: 78.0,
+                    left: 216.0,
                     child: Container(
                       height: 10.0,
                       width: 10.0,
@@ -133,34 +123,16 @@ class _LoginPageState extends State<LoginPage> {
                 value!.isEmpty ? 'Password is required ' : null,
           ),
           SizedBox(
-            height: 5.0,
-          ),
-          GestureDetector(
-            onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => ResetPage()));
-            },
-            child: Container(
-              alignment: Alignment(1.0, 0.0),
-              padding: EdgeInsets.only(top: 15.0, left: 20.0),
-              child: InkWell(
-                child: Text(
-                  "Forget Password",
-                  style: TextStyle(
-                      fontFamily: "Truneno",
-                      fontSize: 12.0,
-                      decoration: TextDecoration.underline,
-                      color: green),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
             height: 50.0,
           ),
           GestureDetector(
             onTap: () {
-              if (checkField()) AuthServices().signIn(email, password, context);
+              if (checkField())
+                AuthServices().signUp(email, password).then((usercred) {
+                  Navigator.of(context).pop();
+                }).catchError((e) {
+                  ErrorHandler().errorDialog(context, e);
+                });
             },
             child: Container(
               height: 50.0,
@@ -171,7 +143,7 @@ class _LoginPageState extends State<LoginPage> {
                 elevation: 7.0,
                 child: Center(
                   child: Text(
-                    "LOGIN",
+                    "SignUp",
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: "Trueno",
@@ -184,70 +156,20 @@ class _LoginPageState extends State<LoginPage> {
           SizedBox(
             height: 20.0,
           ),
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              height: 50.0,
-              color: Colors.transparent,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black,
-                    style: BorderStyle.solid,
-                    width: 1.0,
-                  ),
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(25.0),
+          InkWell(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: Center(
+              child: Text(
+                "Go Back",
+                style: TextStyle(
+                  color: green,
+                  fontFamily: "Trueno",
+                  decoration: TextDecoration.underline,
                 ),
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  // Center(
-                  //   child: ImageIcon(
-                  //     AssetImage('assets/images/google.png'),
-                  //     size: 15.0,
-
-                  //   ),
-                  // ),//  image blacked
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Center(
-                    child: Text(
-                      "Login with Google",
-                      style: TextStyle(
-                        fontFamily: "Trueno",
-                      ),
-                    ),
-                  ),
-                ]),
               ),
             ),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text("New To Flour Shop ? "),
-              SizedBox(
-                width: 10.0,
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => SignUpPage()));
-                },
-                child: Text(
-                  "Register",
-                  style: TextStyle(
-                    color: green,
-                    fontFamily: "Trueno",
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              )
-            ],
           )
         ],
       ),

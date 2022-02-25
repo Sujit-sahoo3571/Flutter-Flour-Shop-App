@@ -34,4 +34,15 @@ class AuthServices {
       ErrorHandler().errorDialog(context, e);
     });
   }
+
+  // signup new users
+  signUp(String email, String password) {
+    return FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: password);
+  }
+
+  //Reset
+  reset(String email) {
+    FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
 }
