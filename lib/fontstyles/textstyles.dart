@@ -6,15 +6,15 @@ class MyFonts extends StatelessWidget {
   String text;
   MyFonts({
     required this.text,
-    required this.color,
-    required this.size,
+    this.color = Colors.black,
+    this.size = 16.0,
   });
 
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(color: color, fontSize: size),
+      style: TextStyle(color: color, fontSize: size, fontFamily: "Tureno"),
     );
   }
 }
