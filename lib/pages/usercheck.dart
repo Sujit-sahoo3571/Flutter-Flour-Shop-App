@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
+import 'package:flutter_flour_shop/pages/bottom_nav_page.dart';
 import 'package:flutter_flour_shop/pages/home_page.dart';
 import 'package:flutter_flour_shop/services/authservice.dart';
 
@@ -68,7 +69,7 @@ class UserSelect extends StatelessWidget {
                         child: ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => HomePage()));
+                                  builder: (context) => NavigationPage())); // HomePage()
                             },
                             child: Text('Guest'))),
                     SizedBox(

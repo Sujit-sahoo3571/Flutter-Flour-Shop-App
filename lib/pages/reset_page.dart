@@ -75,8 +75,8 @@ class _ResetPageState extends State<ResetPage> {
                   ),
                 ),
                 Positioned(
-                    top: 78.0,
-                    left: 216.0,
+                    top: 58.0,
+                    left: 189.0,
                     child: Container(
                       height: 10.0,
                       width: 10.0,

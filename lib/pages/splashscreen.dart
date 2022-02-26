@@ -17,7 +17,7 @@ class SplashScreen extends StatelessWidget {
       ),
       nextScreen: UserSelect(),
       splashTransition: SplashTransition.scaleTransition,
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.blue,
     );
   }
 }
