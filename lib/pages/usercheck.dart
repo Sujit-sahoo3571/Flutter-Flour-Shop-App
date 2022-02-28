@@ -86,7 +86,7 @@ class UserSelect extends StatelessWidget {
                         child: Text('LogIn'),
                         style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(Colors.transparent),
+                              MaterialStateProperty.all(Colors.green),
                         ),
                       ),
                     ),

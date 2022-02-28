@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../fontstyles/textstyles.dart';
 
 class MyGrid extends StatelessWidget {
@@ -23,8 +22,8 @@ class MyGrid extends StatelessWidget {
         buildCard("Besana(ବେସନ)", "Not Available", 7), // besana
         buildCard("Finger millet(ମାଣ୍ଡିଆ)", "Available", 8), //mandia
         buildCard("GaramMasala(ଗରମ ମସଲା)", "Not Available", 9), //garam masala
-        buildCard("Chatua(ଛତୁଆ)", "Available", 10), // CHATUA        
-        buildCard("cumin(ଜିରା) Powder", "Available", 11), // jeera        
+        buildCard("Chatua(ଛତୁଆ)", "Available", 10), // CHATUA
+        buildCard("cumin(ଜିରା) Powder", "Available", 11), // jeera
         buildCard("Mustard Oil(ସୋରିଷ ତେଲ)", "Available", 12), // sarso tel
         buildCard("Chatua(ସାଧା ଛତୁଆ)", "Available", 13), // CHATUA
       ],
@@ -45,18 +44,26 @@ class MyGrid extends StatelessWidget {
             height: 60.0,
             width: 60.0,
             decoration: BoxDecoration(
-                color: Colors.green,
-                borderRadius: BorderRadius.circular(30.0),
-                image: DecorationImage(
-                  image: NetworkImage(
-                      "https://pixabay.com/photos/cake-cappuccino-ceramic-coffee-cup-1839134"),
-                )),
+              color: Colors.green,
+              borderRadius: BorderRadius.circular(30.0),
+              image: DecorationImage(
+                image: NetworkImage(
+                    'https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?ixid=MnwzMDU2NzR8MHwxfHNlYXJjaHwyfHx3b21hbnxlbnwwfHx8fDE2NDU5MzgwNzE&ixlib=rb-1.2.1'),
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
           SizedBox(
             height: 8.0,
           ),
           MyFonts(
             text: name,
+          ),
+          SizedBox(
+            height: 10.0,
+          ),
+          MyFonts(
+            text: status,
           ),
           SizedBox(
             height: 10.0,
@@ -71,13 +78,14 @@ class MyGrid extends StatelessWidget {
                       bottomLeft: Radius.circular(10.0),
                       bottomRight: Radius.circular(10.0))),
               child: Center(
-                  child: MyFonts(
-                text:
-                    status == "Available" ? "Available" : "Currently Stock-out",
-                color: status == "Available"
-                    ? Colors.black
-                    : Color.fromARGB(255, 139, 40, 32),
-              )),
+                child: MyFonts(
+                  text: "Request",
+                  // status == "Available" ? "Available" : "Currently Stock-out",
+                  // color: status == "Available"
+                  //     ? Colors.black
+                  //     : Color.fromARGB(255, 139, 40, 32),
+                ),
+              ),
             ),
           ),
           // SizedBox(height: 10.0,)
@@ -86,6 +94,43 @@ class MyGrid extends StatelessWidget {
       margin: cardIndex.isEven
           ? EdgeInsets.fromLTRB(10.0, 0.0, 25.0, 10.0)
           : EdgeInsets.fromLTRB(25.0, 0.0, 5.0, 10.0),
+    );
+  }
+
+   ListView gridviewscreen() {
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        Container(
+          margin: EdgeInsets.all(10.0),
+          alignment: Alignment.center,
+          height: 60.0,
+          child: MyFonts(text: "BUY MORE", color: Colors.green, size: 24.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+        ),
+        SizedBox(height: 20.0),
+        Container(
+          padding: EdgeInsets.only(left: 25.0, right: 25.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              MyFonts(
+                text: "Categories",
+              ),
+              MyFonts(
+                text: "See All",
+                color: Colors.blue,
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          height: 10.0,
+        ),
+        MyGrid(),
+      ],
     );
   }
 }
