@@ -1,4 +1,4 @@
-import 'dart:async';
+// import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
@@ -182,18 +182,7 @@ class _ItemDescriptionState extends State<ItemDescription> {
                 SizedBox(
                   height: 10.0,
                 ),
-                // ElevatedButton(
-                //     style: ElevatedButton.styleFrom(
-                //       textStyle: TextStyle(fontSize: 20.0),
-                //       minimumSize: Size(120, 50),
-                //       primary: Colors.green,
-                //       onPrimary: Colors.white,
-                //     ),
-                //     onPressed: () {
-                //       productInCart();
-                //       Get.to(() => CartPage());
-                //     },
-                //     child: Text("BUY NOW")),
+                
               ],
             )
           ],
@@ -210,6 +199,5 @@ class _ItemDescriptionState extends State<ItemDescription> {
         price: widget.product.price[netweight],
         netweight: netweight);
     cartController.addProduct(items);
-    print('${widget.product.price[netweight]} ${items.price} ');
   }
 }

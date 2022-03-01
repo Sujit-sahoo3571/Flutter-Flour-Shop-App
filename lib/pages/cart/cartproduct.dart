@@ -63,8 +63,6 @@ class CartProductCard extends StatelessWidget {
             InkWell(
               onTap: (() {
                 controller.addProduct(product);
-                print(
-                    '${product.title} ${product.imageurl} ${product.price} ${product.netweight}');
               }),
               child: Container(
                   alignment: Alignment.center,
@@ -93,11 +91,6 @@ class CartProductCard extends StatelessWidget {
             InkWell(
               onTap: (() {
                 controller.removeProduct(product);
-                print(product.price);
-                for (final mapentry in controller.product.entries) {
-                  print(mapentry.key.price);
-                  print(mapentry.value);
-                }
               }),
               child: Container(
                   alignment: Alignment.center,
