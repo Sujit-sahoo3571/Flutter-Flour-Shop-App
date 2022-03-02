@@ -74,10 +74,7 @@ class ItemCard extends StatelessWidget {
             Container(
               height: 120.0,
               width: 120.0,
-              // decoration: BoxDecoration(
-              //   // borderRadius: BorderRadius.circular(60.0),
-              //   color: product.color,
-              // ),
+             
               child: Hero(
                 tag: product.id,
                 child: Image.asset(
@@ -92,11 +89,7 @@ class ItemCard extends StatelessWidget {
             MyFonts(
               text: product.title,
             ),
-            // SizedBox(
-            //   height: 4.0,
-            // ),
-            // MyFonts(text: 'Rs. ${product.price.toString()}'),
-          ],
+           ],
         ),
       ),
     );

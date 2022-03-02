@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
 import 'package:flutter_flour_shop/pages/cart/cartcontroller.dart';
+import 'package:flutter_flour_shop/pages/loginpage.dart';
+import 'package:flutter_flour_shop/services/authservice.dart';
 import 'package:get/get.dart';
 
 class CartTotal extends StatelessWidget {
@@ -42,20 +44,27 @@ class CartTotal extends StatelessWidget {
                     minimumSize: Size(160.0, 45.0)),
                 onPressed: () {
                   if (controller.total != '0.0') {
+                    //CHECK SIGN IN OR NOT
+
+                    //CLEAR LIST
+                    controller.empty();
+
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
                               title: Container(
-                                alignment: Alignment.center,
-                                width: 60.0,
-                                height: 60.0,
-                                decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(30.0),
-                                  border: Border.all(width: 2.0)
-                                ),
-                                child: MyFonts( text: " ORDER SUCCESS ", color: Colors.white,)),
-                              content: Text('Thank You Sir/Madam😍'),
+                                  alignment: Alignment.center,
+                                  width: 60.0,
+                                  height: 60.0,
+                                  decoration: BoxDecoration(
+                                      color: Colors.blue,
+                                      borderRadius: BorderRadius.circular(30.0),
+                                      border: Border.all(width: 2.0)),
+                                  child: MyFonts(
+                                    text: " ORDER COMPLETED! ",
+                                    color: Colors.white,
+                                  )),
+                              content: Text('Thank You,\nFor Shopping With Us'),
                               actions: [
                                 TextButton(
                                     onPressed: () {
@@ -73,39 +82,3 @@ class CartTotal extends StatelessWidget {
     });
   }
 }
-
-  // ElevatedButton orderButton() {
-  // return ElevatedButton(
-  //     style: ElevatedButton.styleFrom(
-  //       textStyle: TextStyle(fontSize: 20.0),
-  //       minimumSize: Size(120, 50),
-  //       primary: Colors.green,
-  //       onPrimary: Colors.white,
-  //     ),
-  //     onPressed: () {
-  //       if (controller.total != '0.0') {
-  //         print("order success ");
-  //         // showAlert(context, "header", "body");
-  //         return AlertDialog(
-  //           title: Text("me"),
-
-  //         );
-  //       }
-  //     },
-  //     child: Text("ORDER NOW"));
-// }
-
-  // showAlert(context, String header, String body) {
-  //   AlertDialog(
-  //     title: Text(header),
-  //     content: Text(body),
-  //     actions: [
-  //       TextButton(onPressed: () {}, child: Text("Done")),
-  //     ],
-  //   );
-  //   showDialog(
-  //       context: context,
-  //       builder: (_) => AlertDialog(),
-  //       barrierDismissible: false);
-  // }
-// }

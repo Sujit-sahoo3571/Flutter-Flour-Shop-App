@@ -15,7 +15,7 @@ class CartProduct extends StatelessWidget {
     return Obx((() => Container(
           decoration: BoxDecoration(border: Border.all(width: 2.0)),
           child: SizedBox(
-            height: 600.0,
+            height: 510.0,
             child: ListView.builder(
                 itemCount: controller.product.length,
                 itemBuilder: (context, index) => CartProductCard(

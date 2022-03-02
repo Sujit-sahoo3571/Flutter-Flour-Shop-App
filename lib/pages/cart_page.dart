@@ -17,6 +17,9 @@ class CartPage extends StatelessWidget {
         appBar: AppBar(
           title: Text("CART"),
           centerTitle: true,
+          actions: [
+            IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart))
+          ],
         ),
         body: ListView(children: [
           CartProduct(),
