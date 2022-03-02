@@ -12,14 +12,8 @@ class DetailedScreen extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: Text("Product Details"),
-        actions: [
-          IconButton(onPressed: (){}, icon: Icon(Icons.shopping_cart))
-        ],
-        ),
-        body: ItemDescription(product : product),
-        
+      ),
+      body: ItemDescription(product: product),
     );
   }
 }
-
-

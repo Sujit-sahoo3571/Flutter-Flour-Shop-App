@@ -21,14 +21,29 @@ class Items {
   final String imageurl;
   final String title;
   final double? price;
-  final String? netweight;  
+  final String? netweight;
 
-  Items( 
-      {required this.id,       
+  Items(
+      {required this.id,
       required this.imageurl,
       required this.title,
       required this.price,
       required this.netweight});
+}
+
+//people
+class People {
+  final int id;
+  final String image;
+  final String name;
+  final String status;
+
+  People(
+      {required this.id,
+      this.image = 'assets/images/girl.jpg',
+          // 'https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?ixid=MnwzMDU2NzR8MHwxfHNlYXJjaHwyfHx3b21hbnxlbnwwfHx8fDE2NDU5MzgwNzE&ixlib=rb-1.2.1',
+      required this.name,
+      this.status = "online"});
 }
 
 const desc = 'Lorem ipsum dolor sit amet, consectetur'
@@ -179,5 +194,79 @@ List<Product> products = [
       '500Gm': 200.0,
       '1KG': 400.0,
     },
+  ),
+];
+
+//list of people
+List<People> people = [
+  People(
+    id: 1,
+    // image: "assets/images/turmeric.jpg",
+    name: 'Ishaan',
+    // background: Colors.red,
+    status: "offline",
+  ),
+  People(
+    id: 2,
+    // image: "assets/images/turmeric.jpg",
+    name: "Inaya",
+    // background: Colors.red,
+    status: "offline",
+  ),
+  People(
+    id: 3,
+    // image: "assets/images/turmeric.jpg",
+    name: "Dhruv",
+    // background: Colors.red,
+    status: "offline",
+  ),
+  People(
+    id: 4,
+    // image: "assets/images/turmeric.jpg",
+    name: "Shyla",
+    // background: Colors.red,
+    status: "offline",
+  ),
+  People(
+    id: 5,
+    // image: "assets/images/turmeric.jpg",
+    name: "Amar",
+    // background: Colors.red,
+    status: "offline",
+  ),
+  People(
+    id: 6,
+    // image: "assets/images/turmeric.jpg",
+    name: "Diya",
+    // background: Colors.red,
+    status: "offline",
+  ),
+  People(
+    id: 7,
+    // image: "assets/images/turmeric.jpg",
+    name: "Ananya",
+    // background: Colors.red,
+    status: "offline",
+  ),
+  People(
+    id: 8,
+    // image: "assets/images/turmeric.jpg",
+    name: "Tamia",
+    // background: Colors.red,
+    status: "online",
+  ),
+  People(
+    id: 9,
+    // image: "assets/images/turmeric.jpg",
+    name: "Pranati",
+    // background: Colors.red,
+    status: "offline",
+  ),
+  People(
+    id: 10,
+    // image: "assets/images/turmeric.jpg",
+    name: "Yui",
+    // background: Colors.red,
+    status: "online",
   ),
 ];

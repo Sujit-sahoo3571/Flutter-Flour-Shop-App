@@ -26,18 +26,9 @@ class _HomePageState extends State<HomePage> {
                     builder: (context) => NotificationPage()));
               },
               icon: Icon(Icons.notifications)),
-          IconButton(
-              tooltip: "Log Out",
-              onPressed: () {
-                AuthServices().signOut();
-              },
-              icon: Icon(Icons.logout)),
         ],
       ),
       body: Categories(),
-      
-      );
+    );
   }
-
- 
 }
