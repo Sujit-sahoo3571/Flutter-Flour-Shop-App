@@ -36,7 +36,7 @@ class ProfilePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 const CircleAvatar(
-                 backgroundImage: ExactAssetImage('assets/images/girl.jpg'
+                 backgroundImage: ExactAssetImage('assets/images/manwoman/maheshbabu.jpg'
                       // NetworkImage('https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?ixid=MnwzMDU2NzR8MHwxfHNlYXJjaHwyfHx3b21hbnxlbnwwfHx8fDE2NDU5MzgwNzE&ixlib=rb-1.2.1',
                       ),
                   radius: 60.0,

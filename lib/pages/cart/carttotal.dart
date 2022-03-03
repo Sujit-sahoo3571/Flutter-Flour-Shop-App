@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
 import 'package:flutter_flour_shop/pages/cart/cartcontroller.dart';
 import 'package:flutter_flour_shop/pages/loginpage.dart';
+import 'package:flutter_flour_shop/pages/signup_pages.dart';
 import 'package:flutter_flour_shop/services/authservice.dart';
 import 'package:get/get.dart';
 
@@ -44,35 +45,44 @@ class CartTotal extends StatelessWidget {
                     minimumSize: Size(160.0, 45.0)),
                 onPressed: () {
                   if (controller.total != '0.0') {
+                    print(AuthServices.isLogIn);
                     //CHECK SIGN IN OR NOT
-
-                    //CLEAR LIST
-                    controller.empty();
-
-                    showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                              title: Container(
-                                  alignment: Alignment.center,
-                                  width: 60.0,
-                                  height: 60.0,
-                                  decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(30.0),
-                                      border: Border.all(width: 2.0)),
-                                  child: MyFonts(
-                                    text: " ORDER COMPLETED! ",
-                                    color: Colors.white,
-                                  )),
-                              content: Text('Thank You,\nFor Shopping With Us'),
-                              actions: [
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.pop(context);
-                                    },
-                                    child: Text("Done"))
-                              ],
-                            ));
+                    if (!AuthServices.isLogIn) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  AuthServices().handleAuth()));
+                    } else {
+                      //CLEAR LIST
+                      controller.empty();
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                title: Container(
+                                    alignment: Alignment.center,
+                                    width: 60.0,
+                                    height: 60.0,
+                                    decoration: BoxDecoration(
+                                        color: Colors.blue,
+                                        borderRadius:
+                                            BorderRadius.circular(30.0),
+                                        border: Border.all(width: 2.0)),
+                                    child: MyFonts(
+                                      text: " Order Success! ",
+                                      color: Colors.white,
+                                    )),
+                                content:
+                                    Text('Thank You,\nFor Shopping With Us'),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text("Done"))
+                                ],
+                              ));
+                    }
                   }
                 },
                 child: Text("ORDER NOW"))

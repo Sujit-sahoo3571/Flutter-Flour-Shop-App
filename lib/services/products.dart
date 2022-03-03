@@ -40,8 +40,7 @@ class People {
 
   People(
       {required this.id,
-      this.image = 'assets/images/girl.jpg',
-          // 'https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?ixid=MnwzMDU2NzR8MHwxfHNlYXJjaHwyfHx3b21hbnxlbnwwfHx8fDE2NDU5MzgwNzE&ixlib=rb-1.2.1',
+      required this.image,
       required this.name,
       this.status = "online"});
 }
@@ -57,10 +56,10 @@ List<Product> products = [
     title: "Turmeric(ହଳଦି) Powder",
     description: desc,
     price: {
-      '100Gm': 50.0,
-      '250Gm': 100.0,
-      '500Gm': 200.0,
-      '1KG': 400.0,
+      '100Gm': 20.0,
+      '250Gm': 40.0,
+      '500Gm': 80.0,
+      '1KG': 160.0,
     },
   ),
   Product(
@@ -69,10 +68,10 @@ List<Product> products = [
     title: "Mustard Oil(ସୋରିଷ ତେଲ)",
     description: desc,
     price: {
-      '100Gm': 50.0,
-      '250Gm': 100.0,
-      '500Gm': 200.0,
-      '1KG': 400.0,
+      '100Gm': 30.0,
+      '250Gm': 70.0,
+      '500Gm': 140.0,
+      '1KG': 280.0,
     },
   ),
   Product(
@@ -83,8 +82,8 @@ List<Product> products = [
     price: {
       '100Gm': 50.0,
       '250Gm': 100.0,
-      '500Gm': 200.0,
-      '1KG': 400.0,
+      '500Gm': 60.0,
+      '1KG': 120.0,
     },
   ),
   Product(
@@ -93,10 +92,10 @@ List<Product> products = [
     title: "GaramMasala(ଗରମ ମସଲା)",
     description: desc,
     price: {
-      '100Gm': 50.0,
-      '250Gm': 100.0,
-      '500Gm': 200.0,
-      '1KG': 400.0,
+      '100Gm': 70.0,
+      '50Gm': 35.0,
+      // '500Gm': 200.0,
+      // '1KG': 400.0,
     },
   ),
   Product(
@@ -117,10 +116,10 @@ List<Product> products = [
     title: "Finger millet(ମାଣ୍ଡିଆ)",
     description: desc,
     price: {
-      '100Gm': 50.0,
-      '250Gm': 100.0,
-      '500Gm': 200.0,
-      '1KG': 400.0,
+      '100Gm': 10.0,
+      '250Gm': 15.0,
+      '500Gm': 30.0,
+      '1KG': 60.0,
     },
   ),
   Product(
@@ -129,22 +128,22 @@ List<Product> products = [
     title: "cumin(ଜିରା)",
     description: desc,
     price: {
-      '100Gm': 50.0,
-      '250Gm': 100.0,
-      '500Gm': 200.0,
-      '1KG': 400.0,
+      '100Gm': 40.0,
+      '250Gm': 90.0,
+      '500Gm': 180.0,
+      '1KG': 360.0,
     },
   ),
   Product(
     id: 8,
     image: "assets/images/cuminseed.jpg",
-    title: "masala",
+    title: "Meat masala",
     description: desc,
     price: {
-      '100Gm': 50.0,
-      '250Gm': 100.0,
-      '500Gm': 200.0,
-      '1KG': 400.0,
+      '100Gm': 90.0,
+      '50Gm': 50.0,
+      // '500Gm': 200.0,
+      // '1KG': 400.0,
     },
   ),
   Product(
@@ -165,10 +164,10 @@ List<Product> products = [
     title: "Chilly(ଲଙ୍କା) Powder",
     description: desc,
     price: {
-      '100Gm': 50.0,
-      '250Gm': 100.0,
-      '500Gm': 200.0,
-      '1KG': 400.0,
+      '100Gm': 30.0,
+      '250Gm': 70.0,
+      '500Gm': 140.0,
+      '1KG': 280.0,
     },
   ),
   Product(
@@ -201,72 +200,72 @@ List<Product> products = [
 List<People> people = [
   People(
     id: 1,
-    // image: "assets/images/turmeric.jpg",
+    image: "assets/images/manwoman/boy.jpg",
     name: 'Ishaan',
-    // background: Colors.red,
+
     status: "offline",
   ),
   People(
     id: 2,
-    // image: "assets/images/turmeric.jpg",
+    image: "assets/images/manwoman/woman8.jpg",
     name: "Inaya",
-    // background: Colors.red,
-    status: "offline",
+
+    status: "online",
   ),
   People(
     id: 3,
-    // image: "assets/images/turmeric.jpg",
+    image: "assets/images/manwoman/boy2.jpg",
     name: "Dhruv",
-    // background: Colors.red,
+
     status: "offline",
   ),
   People(
     id: 4,
-    // image: "assets/images/turmeric.jpg",
+    image: "assets/images/manwoman/woman5.jpg",
     name: "Shyla",
-    // background: Colors.red,
+
     status: "offline",
   ),
   People(
     id: 5,
-    // image: "assets/images/turmeric.jpg",
+    image: "assets/images/manwoman/boy3.jpg",
     name: "Amar",
-    // background: Colors.red,
+
     status: "offline",
   ),
   People(
     id: 6,
-    // image: "assets/images/turmeric.jpg",
+    image: "assets/images/manwoman/woman4.jpg",
     name: "Diya",
-    // background: Colors.red,
+
     status: "offline",
   ),
   People(
     id: 7,
-    // image: "assets/images/turmeric.jpg",
+     image: "assets/images/manwoman/woman3.jpg",
     name: "Ananya",
-    // background: Colors.red,
+
     status: "offline",
   ),
   People(
     id: 8,
-    // image: "assets/images/turmeric.jpg",
+    image: "assets/images/manwoman/woman2.jpg",
     name: "Tamia",
-    // background: Colors.red,
+
     status: "online",
   ),
   People(
     id: 9,
-    // image: "assets/images/turmeric.jpg",
+     image: "assets/images/manwoman/woman7.jpg",
     name: "Pranati",
-    // background: Colors.red,
+
     status: "offline",
   ),
   People(
     id: 10,
-    // image: "assets/images/turmeric.jpg",
+     image: "assets/images/manwoman/woman.jpg",
     name: "Yui",
-    // background: Colors.red,
+
     status: "online",
   ),
 ];
