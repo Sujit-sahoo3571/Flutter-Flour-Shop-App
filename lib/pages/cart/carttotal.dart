@@ -44,17 +44,8 @@ class CartTotal extends StatelessWidget {
                     onPrimary: Colors.white,
                     minimumSize: Size(160.0, 45.0)),
                 onPressed: () {
-                  // if (controller.total != '0.0') {
-                  // print(AuthServices.isLogIn);
-                  //CHECK SIGN IN OR NOT
-                  // if (!AuthServices.isLogIn) {
-                  //   print(AuthServices.isLogIn);
-                  //   Navigator.push(
-                  //       context,
-                  //       MaterialPageRoute(
-                  //           builder: (context) => AuthServices().handleAuth()));
-                  // }
-                  if (controller.total != '0.0' && AuthServices.isLogIn) {
+                
+                  if (controller.total != '0.0' ) {
                     print(AuthServices.isLogIn);
                     //CLEAR LIST
                     controller.empty();
