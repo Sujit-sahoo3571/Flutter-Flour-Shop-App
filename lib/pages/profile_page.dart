@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
 import 'package:flutter_flour_shop/pages/layout/mgridview.dart';
 import 'package:flutter_flour_shop/services/authservice.dart';
+import 'package:get/get.dart';
 
 class ProfilePage extends StatelessWidget {
-  int followers = 0, following = 0;
-  String name = 'Shoco';
+  int followers=0, following = 0;
+  String name = 'Hero';
   String bio = 'Live Your Life';
   ProfilePage({Key? key}) : super(key: key);
 
@@ -17,7 +18,7 @@ class ProfilePage extends StatelessWidget {
           title: Text("PROFILE"),
           centerTitle: true,
           actions: [
-             IconButton(
+            IconButton(
                 tooltip: "Log Out",
                 onPressed: () {
                   AuthServices().signOut();
@@ -25,7 +26,6 @@ class ProfilePage extends StatelessWidget {
                 icon: Icon(Icons.logout)),
           ],
         ),
-        
         body: ListView(
           padding: EdgeInsets.symmetric(horizontal: 10.0),
           children: [
@@ -36,13 +36,14 @@ class ProfilePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 const CircleAvatar(
-                 backgroundImage: ExactAssetImage('assets/images/manwoman/maheshbabu.jpg'
+                  backgroundImage: ExactAssetImage(
+                      'assets/images/manwoman/maheshbabu.jpg'
                       // NetworkImage('https://images.unsplash.com/photo-1524250502761-1ac6f2e30d43?ixid=MnwzMDU2NzR8MHwxfHNlYXJjaHwyfHx3b21hbnxlbnwwfHx8fDE2NDU5MzgwNzE&ixlib=rb-1.2.1',
                       ),
                   radius: 60.0,
                 ),
-                profileheader('$followers', 'Followers'),
-                profileheader('$following', 'Following'),
+                profileheader('${followers}', 'Followers'),
+                profileheader('${following}', 'Following'),
               ],
             ),
             Container(

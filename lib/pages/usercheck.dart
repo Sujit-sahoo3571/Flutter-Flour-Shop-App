@@ -69,7 +69,8 @@ class UserSelect extends StatelessWidget {
                         child: ElevatedButton(
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => NavigationPage())); // HomePage()
+                                  builder: (context) =>
+                                      NavigationPage())); // HomePage()
                             },
                             child: Text('Guest'))),
                     SizedBox(
@@ -80,8 +81,9 @@ class UserSelect extends StatelessWidget {
                       height: 60.0,
                       child: ElevatedButton(
                         onPressed: () {
-                           Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => AuthServices().handleAuth()));
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) =>
+                                  AuthServices().handleAuth()));
                         },
                         child: Text('LogIn'),
                         style: ButtonStyle(
