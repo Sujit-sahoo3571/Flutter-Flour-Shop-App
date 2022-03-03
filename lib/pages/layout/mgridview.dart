@@ -1,9 +1,6 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
 import 'package:flutter_flour_shop/services/products.dart';
-import 'package:get/get.dart';
 
 class MyGrid extends StatelessWidget {
   const MyGrid({Key? key}) : super(key: key);
@@ -50,7 +47,7 @@ class PeopleCard extends StatefulWidget {
 
 class _PeopleCardState extends State<PeopleCard> {
   String follow = "Follow";
-  int followCount = 0;
+  // int followCount = 0;
   bool isEnable = true;
   @override
   Widget build(BuildContext context) {
@@ -87,11 +84,11 @@ class _PeopleCardState extends State<PeopleCard> {
                   onPressed: () {
                     setState(() {
                       if (isEnable) {
-                        followCount++;
+                        // followCount++;
                         isEnable = false;
                         follow = "Request";
                       } else {
-                        --followCount;
+                        // --followCount;
                         isEnable = true;
                         follow = "Follow";
                       }

@@ -7,6 +7,9 @@ import 'package:flutter_flour_shop/pages/loginpage.dart';
 import 'package:flutter_flour_shop/services/error_handler.dart';
 
 class AuthServices {
+//is login or not ?
+  static bool isLogIn = false;
+
 // Determine if user is authenticated
   handleAuth() {
     return StreamBuilder(
@@ -23,14 +26,20 @@ class AuthServices {
 
   signOut() {
     FirebaseAuth.instance.signOut();
+     isLogIn = false;
+      print(isLogIn);
+
   }
 
   //signin
   signIn(String email, String password, context) {
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
-        .then((value) => print("sign In"))
-        .catchError((e) {
+        .then((value) {
+      print("sign In");
+      isLogIn = true;
+      print(isLogIn);
+    }).catchError((e) {
       print(e.toString());
       ErrorHandler().errorDialog(context, e);
     });

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
 import 'package:flutter_flour_shop/pages/cart/cartcontroller.dart';
 import 'package:flutter_flour_shop/pages/loginpage.dart';
+import 'package:flutter_flour_shop/pages/signup_pages.dart';
 import 'package:flutter_flour_shop/services/authservice.dart';
 import 'package:get/get.dart';
 
@@ -43,12 +44,11 @@ class CartTotal extends StatelessWidget {
                     onPrimary: Colors.white,
                     minimumSize: Size(160.0, 45.0)),
                 onPressed: () {
-                  if (controller.total != '0.0') {
-                    //CHECK SIGN IN OR NOT
-
+                
+                  if (controller.total != '0.0' ) {
+                    print(AuthServices.isLogIn);
                     //CLEAR LIST
                     controller.empty();
-
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
@@ -61,7 +61,7 @@ class CartTotal extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(30.0),
                                       border: Border.all(width: 2.0)),
                                   child: MyFonts(
-                                    text: " ORDER COMPLETED! ",
+                                    text: " Order Success! ",
                                     color: Colors.white,
                                   )),
                               content: Text('Thank You,\nFor Shopping With Us'),
@@ -74,6 +74,7 @@ class CartTotal extends StatelessWidget {
                               ],
                             ));
                   }
+                  // }
                 },
                 child: Text("ORDER NOW"))
           ],
