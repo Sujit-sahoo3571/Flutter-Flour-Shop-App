@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
 import 'package:flutter_flour_shop/pages/cart/cartcontroller.dart';
-import 'package:flutter_flour_shop/pages/loginpage.dart';
-import 'package:flutter_flour_shop/pages/signup_pages.dart';
 import 'package:flutter_flour_shop/services/authservice.dart';
 import 'package:get/get.dart';
 
@@ -44,9 +42,12 @@ class CartTotal extends StatelessWidget {
                     onPrimary: Colors.white,
                     minimumSize: Size(160.0, 45.0)),
                 onPressed: () {
-                
-                  if (controller.total != '0.0' ) {
+                  if (controller.total != '0.0') {
                     print(AuthServices.isLogIn);
+                    if (!AuthServices.isLogIn) {
+                     
+                      Get.to(AuthServices().handleAuth());
+                    } else {
                     //CLEAR LIST
                     controller.empty();
                     showDialog(
@@ -74,7 +75,7 @@ class CartTotal extends StatelessWidget {
                               ],
                             ));
                   }
-                  // }
+                  }
                 },
                 child: Text("ORDER NOW"))
           ],

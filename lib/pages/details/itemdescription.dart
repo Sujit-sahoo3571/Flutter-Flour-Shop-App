@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 
 class ItemDescription extends StatefulWidget {
   final Product product;
-  // final Items items;  required this.items
   const ItemDescription({
     Key? key,
     required this.product,
@@ -24,8 +23,7 @@ class _ItemDescriptionState extends State<ItemDescription> {
   int count = 0;
   String? netweight = '100Gm';
   double price = 50.0;
-  int _quantity = 1;
-  final cartController = Get.put(CartController());
+  final  cartController = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
@@ -172,7 +170,7 @@ class _ItemDescriptionState extends State<ItemDescription> {
                     ),
                     onPressed: () {
                       productInCart();
-                      Get.to(() => CartPage());
+                      Get.to(CartPage());
                     },
                     child: MyFonts(
                       text: "ADD TO CART",
@@ -182,7 +180,6 @@ class _ItemDescriptionState extends State<ItemDescription> {
                 SizedBox(
                   height: 10.0,
                 ),
-                
               ],
             )
           ],
