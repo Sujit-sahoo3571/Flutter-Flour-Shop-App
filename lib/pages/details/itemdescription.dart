@@ -170,7 +170,7 @@ class _ItemDescriptionState extends State<ItemDescription> {
                     ),
                     onPressed: () {
                       productInCart();
-                      Get.to(CartPage());
+                      Get.off(CartPage());
                     },
                     child: MyFonts(
                       text: "ADD TO CART",

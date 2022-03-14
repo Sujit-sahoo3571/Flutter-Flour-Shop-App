@@ -60,53 +60,31 @@ class CartProductCard extends StatelessWidget {
                 Text('${product.title} ${product.price}/${product.netweight}')),
         Row(
           children: [
-            InkWell(
-              onTap: (() {
-                controller.addProduct(product);
-              }),
-              child: Container(
-                  alignment: Alignment.center,
-                  width: 30.0,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.blue,
-                  ),
-                  child: MyFonts(
-                    text: '+',
-                    color: Colors.white,
-                  )),
-            ),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(40.0, 30.0),
+                  onPrimary: Colors.white,
+                  primary: Colors.orange,
+                ),
+                onPressed: () => controller.removeProduct(product),
+                child: Text("-")),
             Container(
                 alignment: Alignment.center,
-                width: 30.0,
+                width: 40.0,
                 decoration: BoxDecoration(
                     border: Border.all(
                       width: 2.0,
                     ),
-                    borderRadius: BorderRadius.circular(20.0)),
+                    borderRadius: BorderRadius.circular(10.0)),
                 child: Text('$quantity')),
-            InkWell(
-              onTap: (() {
-                controller.removeProduct(product);
-              }),
-              child: Container(
-                  alignment: Alignment.center,
-                  width: 30.0,
-                  decoration: BoxDecoration(
-                    border: Border.all(
-                      width: 2.0,
-                    ),
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.blue,
-                  ),
-                  child: MyFonts(
-                    text: '-',
-                    color: Colors.white,
-                  )),
-            ),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  minimumSize: Size(40.0, 30.0),
+                  onPrimary: Colors.white,
+                  primary: Colors.green,
+                ),
+                onPressed: () => controller.addProduct(product),
+                child: Text("+")),
           ],
         ),
       ]),
