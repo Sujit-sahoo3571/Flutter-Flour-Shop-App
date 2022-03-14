@@ -202,70 +202,60 @@ List<People> people = [
     id: 1,
     image: "assets/images/manwoman/boy.jpg",
     name: 'Ishaan',
-
     status: "offline",
   ),
   People(
     id: 2,
     image: "assets/images/manwoman/woman8.jpg",
     name: "Inaya",
-
     status: "online",
   ),
   People(
     id: 3,
     image: "assets/images/manwoman/boy2.jpg",
     name: "Dhruv",
-
     status: "offline",
   ),
   People(
     id: 4,
     image: "assets/images/manwoman/woman5.jpg",
     name: "Shyla",
-
     status: "offline",
   ),
   People(
     id: 5,
     image: "assets/images/manwoman/boy3.jpg",
     name: "Amar",
-
     status: "offline",
   ),
   People(
     id: 6,
     image: "assets/images/manwoman/woman4.jpg",
     name: "Diya",
-
     status: "offline",
   ),
   People(
     id: 7,
-     image: "assets/images/manwoman/woman3.jpg",
+    image: "assets/images/manwoman/woman3.jpg",
     name: "Ananya",
-
     status: "offline",
   ),
   People(
     id: 8,
     image: "assets/images/manwoman/woman2.jpg",
     name: "Tamia",
-
     status: "online",
   ),
   People(
     id: 9,
-     image: "assets/images/manwoman/woman7.jpg",
-    name: "Pranati",
-
+    image: "assets/images/manwoman/woman7.jpg",
+    name: "Hundi",
     status: "offline",
   ),
   People(
     id: 10,
-     image: "assets/images/manwoman/woman.jpg",
+    image: "assets/images/manwoman/woman.jpg",
     name: "Yui",
-
     status: "online",
   ),
 ];
