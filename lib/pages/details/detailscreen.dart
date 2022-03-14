@@ -11,7 +11,7 @@ class DetailedScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Product Details"),
+        title: const Text("Product Details"),
       ),
       body: ItemDescription(product: product),
     );

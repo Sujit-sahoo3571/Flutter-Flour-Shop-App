@@ -15,19 +15,10 @@ class CartController extends GetxController {
     } else {
       _products[product] = 1;
     }
-
-    Get.snackbar(
-      "Product Added ",
-      "You've Added ${product.title} ${product.price} in your cart",
-      snackPosition: SnackPosition.BOTTOM,
-      duration: Duration(seconds: 1),
-    );
   }
 
   //get product
   get product => _products;
-
-  // get quantity => _products[product];
 
   // remove product
   void removeProduct(Items product) {

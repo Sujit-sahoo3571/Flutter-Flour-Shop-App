@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
 import 'package:flutter_flour_shop/pages/details/detailscreen.dart';
 import 'package:flutter_flour_shop/services/products.dart';
+import 'package:get/get.dart';
 
 class Categories extends StatelessWidget {
   const Categories({Key? key}) : super(key: key);
@@ -35,14 +36,18 @@ class Categories extends StatelessWidget {
           Expanded(
               child: GridView.builder(
                   itemCount: products.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 15.0,
                       mainAxisSpacing: 15.0,
                       childAspectRatio: 0.75),
                   itemBuilder: (context, index) => ItemCard(
-                        product: products[index], pressed: ()=> Navigator.push(context,MaterialPageRoute(builder: (context)=> DetailedScreen(product: products[index]))),
-                      )))
+                      product: products[index],
+                      pressed: () =>
+                          // Navigator.push(context,MaterialPageRoute(builder:
+                          //  (context)=> DetailedScreen(product: products[index]))),
+                          // Get.to(DetailedScreen(product: products[index]))
+                          Get.to(()=>DetailedScreen(product: products[index])))))
         ],
       ),
     );
@@ -55,7 +60,8 @@ class ItemCard extends StatelessWidget {
 
   const ItemCard({
     Key? key,
-    required this.product, required this.pressed,
+    required this.product,
+    required this.pressed,
   }) : super(key: key);
 
   @override
@@ -74,7 +80,6 @@ class ItemCard extends StatelessWidget {
             Container(
               height: 120.0,
               width: 120.0,
-             
               child: Hero(
                 tag: product.id,
                 child: Image.asset(
@@ -89,7 +94,7 @@ class ItemCard extends StatelessWidget {
             MyFonts(
               text: product.title,
             ),
-           ],
+          ],
         ),
       ),
     );

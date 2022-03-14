@@ -1,24 +1,22 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/pages/bottom_nav_page.dart';
-import 'package:flutter_flour_shop/pages/home_page.dart';
+import 'package:flutter_flour_shop/pages/cart_page.dart';
 import 'package:flutter_flour_shop/pages/loginpage.dart';
 import 'package:flutter_flour_shop/services/error_handler.dart';
 
 class AuthServices {
-//is login or not ?
-  static bool isLogIn = false;
-
 // Determine if user is authenticated
   handleAuth() {
     return StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
-            return NavigationPage(); //HomePage()
-          } else
+            // isLogIn = true;
+            return CartPage(); //HomePage()
+          } else {
             return LoginPage();
+          }
         });
   }
 
@@ -26,9 +24,6 @@ class AuthServices {
 
   signOut() {
     FirebaseAuth.instance.signOut();
-     isLogIn = false;
-      print(isLogIn);
-
   }
 
   //signin
@@ -37,8 +32,6 @@ class AuthServices {
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) {
       print("sign In");
-      isLogIn = true;
-      print(isLogIn);
     }).catchError((e) {
       print(e.toString());
       ErrorHandler().errorDialog(context, e);
@@ -54,5 +47,15 @@ class AuthServices {
   //Reset
   reset(String email) {
     FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
+
+  bool loginCheck() {
+    if (FirebaseAuth.instance.currentUser?.uid != null) {
+      print("login");
+      return true;
+    } else {
+      print("Logout");
+      return false;
+    }
   }
 }

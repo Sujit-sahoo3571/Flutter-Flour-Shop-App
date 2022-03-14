@@ -2,7 +2,8 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/pages/cart_page.dart';
 import 'package:flutter_flour_shop/pages/home_page.dart';
-import 'package:flutter_flour_shop/pages/profile_page.dart';
+import 'package:flutter_flour_shop/pages/profile/profilepage.dart';
+// import 'package:flutter_flour_shop/pages/profile_page.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({Key? key}) : super(key: key);
