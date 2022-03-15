@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
+import 'package:flutter_flour_shop/pages/profile/editprofilepage.dart';
 import 'package:flutter_flour_shop/pages/profile/profilecontroller.dart';
 import 'package:flutter_flour_shop/services/authservice.dart';
 import 'package:flutter_flour_shop/services/products.dart';
@@ -7,7 +10,7 @@ import 'package:get/get.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({Key? key}) : super(key: key);
-  final ProfileController profileController = Get.put(ProfileController());
+  final ProfileController _profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,22 +47,27 @@ class ProfilePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    CircleAvatar(
-                      backgroundImage:
-                          ExactAssetImage("assets/images/manwoman/boy3.jpg"),
-                      minRadius: 50.0,
+                    Obx(
+                      () => CircleAvatar(
+                        backgroundColor: Colors.grey,
+                        backgroundImage:
+                            _profileController.isProfilePicPathSet == true
+                                ? FileImage(File(_profileController
+                                    .profilePicPath.value)) as ImageProvider
+                                : AssetImage(
+                                    "assets/images/manwoman/profilepic.png"),
+                        minRadius: 50.0,
+                      ),
                     ),
                     Obx(() => followers(
-                        '${profileController.follower()}', "Followers")),
+                        '${_profileController.follower()}', "Followers")),
                     Obx(() => followers(
-                        '${profileController.follower()}', "Followings")),
+                        '${_profileController.follower()}', "Followings")),
                   ],
                 ),
                 SizedBox(
                   height: 7.0,
                 ),
-                // Container(
-
                 Container(
                     margin: EdgeInsets.all(5.0),
                     alignment: Alignment.topLeft,
@@ -71,8 +79,7 @@ class ProfilePage extends StatelessWidget {
                 Container(
                     alignment: Alignment.topLeft,
                     child: MyFonts(text: "Can You Teach Me How To Live.?")),
-                //   child: followers("Soco", "Can You Teach Me How To Live.?")),
-                SizedBox(
+               SizedBox(
                   height: 7.0,
                 ),
                 ElevatedButton(
@@ -81,7 +88,9 @@ class ProfilePage extends StatelessWidget {
                       onPrimary: Colors.black,
                       minimumSize: Size(250.0, 42.0),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(() => EditProfile());
+                    },
                     child: Text("Edit Profile")),
                 SizedBox(
                   height: 7.0,
@@ -159,7 +168,8 @@ class PeopleCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             CircleAvatar(
-              backgroundImage: ExactAssetImage(people.image),
+              backgroundImage: AssetImage(people.image),
+              // ExactAssetImage(people.image),
               minRadius: 40.0,
             ),
             MyFonts(text: people.name),
