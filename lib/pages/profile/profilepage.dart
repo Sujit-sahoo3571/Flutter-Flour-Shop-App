@@ -1,11 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
+import 'package:flutter_flour_shop/pages/profile/editprofilepage.dart';
+import 'package:flutter_flour_shop/pages/profile/profilecontroller.dart';
 import 'package:flutter_flour_shop/services/authservice.dart';
 import 'package:flutter_flour_shop/services/products.dart';
 import 'package:get/get.dart';
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
+  ProfilePage({Key? key}) : super(key: key);
+  final ProfileController _profileController = Get.put(ProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -25,12 +30,10 @@ class ProfilePage extends StatelessWidget {
                 if (AuthServices().loginCheck()) {
                   AuthServices().signOut();
                   Get.snackbar("Sign Out", "You Logged Out Successfully");
-                } else
-                {
-                   print("not logged in ");
+                } else {
+                  print("not logged in ");
                   Get.snackbar("Try LogIn First", "You're Not Logged In yet ");
                 }
-                 
               },
               tooltip: "Log Out",
             )
@@ -44,20 +47,27 @@ class ProfilePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    CircleAvatar(
-                      backgroundImage:
-                          ExactAssetImage("assets/images/manwoman/boy3.jpg"),
-                      minRadius: 50.0,
+                    Obx(
+                      () => CircleAvatar(
+                        backgroundColor: Colors.grey,
+                        backgroundImage:
+                            _profileController.isProfilePicPathSet == true
+                                ? FileImage(File(_profileController
+                                    .profilePicPath.value)) as ImageProvider
+                                : AssetImage(
+                                    "assets/images/manwoman/profilepic.png"),
+                        minRadius: 50.0,
+                      ),
                     ),
-                    followers('0', "Followers"),
-                    followers('0', "Followings"),
+                    Obx(() => followers(
+                        '${_profileController.follower()}', "Followers")),
+                    Obx(() => followers(
+                        '${_profileController.follower()}', "Followings")),
                   ],
                 ),
                 SizedBox(
                   height: 7.0,
                 ),
-                // Container(
-
                 Container(
                     margin: EdgeInsets.all(5.0),
                     alignment: Alignment.topLeft,
@@ -69,8 +79,7 @@ class ProfilePage extends StatelessWidget {
                 Container(
                     alignment: Alignment.topLeft,
                     child: MyFonts(text: "Can You Teach Me How To Live.?")),
-                //   child: followers("Soco", "Can You Teach Me How To Live.?")),
-                SizedBox(
+               SizedBox(
                   height: 7.0,
                 ),
                 ElevatedButton(
@@ -79,7 +88,9 @@ class ProfilePage extends StatelessWidget {
                       onPrimary: Colors.black,
                       minimumSize: Size(250.0, 42.0),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(() => EditProfile());
+                    },
                     child: Text("Edit Profile")),
                 SizedBox(
                   height: 7.0,
@@ -101,9 +112,12 @@ class ProfilePage extends StatelessWidget {
                     padding: EdgeInsets.all(7.0),
                     height: 230.0,
                     child: scrollnames()),
-                    Container(
-                      alignment: Alignment.topLeft,
-                      child: MyFonts(text: "Popular Search", color: Colors.green,)),
+                Container(
+                    alignment: Alignment.topLeft,
+                    child: MyFonts(
+                      text: "Popular Search",
+                      color: Colors.green,
+                    )),
                 Container(
                     padding: EdgeInsets.all(7.0),
                     height: 230.0,
@@ -143,8 +157,8 @@ class ProfilePage extends StatelessWidget {
 
 class PeopleCard extends StatelessWidget {
   final People people;
-  const PeopleCard({Key? key, required this.people}) : super(key: key);
-
+  PeopleCard({Key? key, required this.people}) : super(key: key);
+  final ProfileController _profileController = Get.put(ProfileController());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -154,16 +168,32 @@ class PeopleCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             CircleAvatar(
-              backgroundImage: ExactAssetImage(people.image),
-              // child: Image.asset(people.image, fit: BoxFit.cover,),
+              backgroundImage: AssetImage(people.image),
+              // ExactAssetImage(people.image),
               minRadius: 40.0,
             ),
             MyFonts(text: people.name),
             MyFonts(text: people.status),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(minimumSize: Size(90.0, 30.0)),
-                onPressed: () {},
-                child: Text("Follow"))
+            Obx(
+              () => ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(90.0, 30.0),
+                    primary: (_profileController.friends.contains(people))
+                        ? Colors.green
+                        : Colors.blue,
+                    onPrimary: Colors.white,
+                  ),
+                  onPressed: () {
+                    if (!_profileController.friends.contains(people)) {
+                      _profileController.addFriends(people);
+                    } else {
+                      _profileController.removeFriends(people);
+                    }
+                  },
+                  child: Text(_profileController.friends.contains(people)
+                      ? "Request"
+                      : "Follow")),
+            )
           ],
         ),
       ),
