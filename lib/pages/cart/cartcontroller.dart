@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/services/products.dart';
 import 'package:get/get.dart';
 
@@ -46,4 +45,10 @@ class CartController extends GetxController {
   void empty() {
     _products.clear();
   }
+
+  // dot index
+  var dotindex = 0.obs;
+  // Electronic products
+  var _newItems = {}.obs;
+  var _totalOrders = {}.obs;
 }

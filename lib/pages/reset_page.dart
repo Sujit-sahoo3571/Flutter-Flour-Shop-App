@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/services/authservice.dart';
-import 'package:flutter_flour_shop/services/error_handler.dart';
 
 class ResetPage extends StatefulWidget {
   const ResetPage({Key? key}) : super(key: key);
@@ -10,7 +9,7 @@ class ResetPage extends StatefulWidget {
 }
 
 class _ResetPageState extends State<ResetPage> {
-  final formKey = new GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   String email = '';
   Color green = Color(0xFF00AF19);
@@ -43,7 +42,7 @@ class _ResetPageState extends State<ResetPage> {
       appBar: AppBar(
         title: Text("Reset page"),
       ),
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Form(
@@ -62,7 +61,7 @@ class _ResetPageState extends State<ResetPage> {
           SizedBox(
             height: 75.0,
           ),
-          Container(
+          SizedBox(
             height: 125.0,
             width: 200.0,
             child: Stack(
@@ -102,7 +101,7 @@ class _ResetPageState extends State<ResetPage> {
               focusedBorder:
                   UnderlineInputBorder(borderSide: BorderSide(color: green)),
             ),
-            onChanged: (value) => this.email = value,
+            onChanged: (value) => email = value,
             validator: (value) =>
                 value!.isEmpty ? 'Email is required ' : validateEmail(value),
           ),
@@ -114,7 +113,7 @@ class _ResetPageState extends State<ResetPage> {
               if (checkField()) AuthServices().reset(email);
               Navigator.of(context).pop();
             },
-            child: Container(
+            child: SizedBox(
               height: 50.0,
               child: Material(
                 borderRadius: BorderRadius.circular(25.0),

@@ -10,7 +10,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final formKey = new GlobalKey<FormState>();
+  final formKey = GlobalKey<FormState>();
 
   String email = '', password = '';
   Color green = Color(0xFF00AF19);
@@ -24,7 +24,7 @@ class _SignUpPageState extends State<SignUpPage> {
     if (!regex.hasMatch(value!))
       return "Enter valid Email ";
     else
-      null;
+      return null;
   }
 
   // To check field during submit
@@ -43,7 +43,7 @@ class _SignUpPageState extends State<SignUpPage> {
       appBar: AppBar(
         title: Text("SignUp page"),
       ),
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Form(
@@ -62,7 +62,7 @@ class _SignUpPageState extends State<SignUpPage> {
           SizedBox(
             height: 75.0,
           ),
-          Container(
+          SizedBox(
             height: 125.0,
             width: 200.0,
             child: Stack(
@@ -102,7 +102,7 @@ class _SignUpPageState extends State<SignUpPage> {
               focusedBorder:
                   UnderlineInputBorder(borderSide: BorderSide(color: green)),
             ),
-            onChanged: (value) => this.email = value,
+            onChanged: (value) => email = value,
             validator: (value) =>
                 value!.isEmpty ? 'Email is required ' : validateEmail(value),
           ),
@@ -118,7 +118,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   UnderlineInputBorder(borderSide: BorderSide(color: green)),
             ),
             obscureText: true,
-            onChanged: (value) => this.password = value,
+            onChanged: (value) => password = value,
             validator: (value) =>
                 value!.isEmpty ? 'Password is required ' : null,
           ),
@@ -134,7 +134,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   ErrorHandler().errorDialog(context, e);
                 });
             },
-            child: Container(
+            child: SizedBox(
               height: 50.0,
               child: Material(
                 borderRadius: BorderRadius.circular(25.0),

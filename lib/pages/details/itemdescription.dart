@@ -127,15 +127,13 @@ class _ItemDescriptionState extends State<ItemDescription> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 // SizedBox(height: 10.0),
-                Container(
-                  child: MyFonts(
-                    text: 'Price: Rs. ${widget.product.price[netweight]}',
-                    bold: true,
-                    size: 22.0,
-                    color: Colors.green,
-                  ),
+                MyFonts(
+                  text: 'Price: Rs. ${widget.product.price[netweight]}',
+                  bold: true,
+                  size: 22.0,
+                  color: Colors.green,
                 ),
-                Container(
+                SizedBox(
                   width: 120.0,
                   height: 60.0,
                   child: DropdownButton<String>(

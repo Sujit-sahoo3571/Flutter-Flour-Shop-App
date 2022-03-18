@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_flour_shop/pages/bottom_nav_page.dart';
 import 'package:flutter_flour_shop/pages/cart_page.dart';
 import 'package:flutter_flour_shop/pages/loginpage.dart';
 import 'package:flutter_flour_shop/services/error_handler.dart';
@@ -30,9 +29,8 @@ class AuthServices {
   signIn(String email, String password, context) {
     FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password)
-        .then((value) {
-      print("sign In");
-    }).catchError((e) {
+        .then((value) {})
+        .catchError((e) {
       print(e.toString());
       ErrorHandler().errorDialog(context, e);
     });
@@ -51,10 +49,8 @@ class AuthServices {
 
   bool loginCheck() {
     if (FirebaseAuth.instance.currentUser?.uid != null) {
-      print("login");
       return true;
     } else {
-      print("Logout");
       return false;
     }
   }

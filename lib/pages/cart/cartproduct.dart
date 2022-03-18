@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
 import 'package:flutter_flour_shop/pages/cart/cartcontroller.dart';
 import 'package:flutter_flour_shop/services/products.dart';
 import 'package:get/get.dart';
