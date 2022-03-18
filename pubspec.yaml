@@ -44,6 +44,10 @@ dependencies:
   #imagepicker
   image_picker: ^0.8.4+11
   path_provider: ^2.0.9
+  # image slider
+  carousel_slider: ^4.0.0
+  # dot indicator
+  smooth_page_indicator: ^1.0.0+2
 
 dev_dependencies:
   flutter_test:

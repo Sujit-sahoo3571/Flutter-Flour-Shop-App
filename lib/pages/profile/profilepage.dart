@@ -31,7 +31,6 @@ class ProfilePage extends StatelessWidget {
                   AuthServices().signOut();
                   Get.snackbar("Sign Out", "You Logged Out Successfully");
                 } else {
-                  print("not logged in ");
                   Get.snackbar("Try LogIn First", "You're Not Logged In yet ");
                 }
               },
@@ -51,7 +50,7 @@ class ProfilePage extends StatelessWidget {
                       () => CircleAvatar(
                         backgroundColor: Colors.grey,
                         backgroundImage:
-                            _profileController.isProfilePicPathSet == true
+                            _profileController.isProfilePicPathSet.value == true
                                 ? FileImage(File(_profileController
                                     .profilePicPath.value)) as ImageProvider
                                 : AssetImage(
@@ -71,15 +70,19 @@ class ProfilePage extends StatelessWidget {
                 Container(
                     margin: EdgeInsets.all(5.0),
                     alignment: Alignment.topLeft,
-                    child: MyFonts(
-                      text: "Soco",
-                      bold: true,
-                      size: 22.0,
+                    child: Obx(
+                      () =>
+                          // child:
+                          MyFonts(
+                        text: _profileController.name.value,
+                        bold: true,
+                        size: 22.0,
+                      ),
                     )),
                 Container(
                     alignment: Alignment.topLeft,
-                    child: MyFonts(text: "Can You Teach Me How To Live.?")),
-               SizedBox(
+                    child: Obx(()=>MyFonts(text: _profileController.bio.value))),
+                SizedBox(
                   height: 7.0,
                 ),
                 ElevatedButton(

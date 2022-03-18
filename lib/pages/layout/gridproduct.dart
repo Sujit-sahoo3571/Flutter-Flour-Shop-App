@@ -77,7 +77,7 @@ class ItemCard extends StatelessWidget {
             border: Border.all(width: 2.0)),
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: 120.0,
               width: 120.0,
               child: Hero(

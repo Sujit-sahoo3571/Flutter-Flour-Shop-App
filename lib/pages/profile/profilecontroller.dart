@@ -21,4 +21,15 @@ class ProfileController extends GetxController {
     profilePicPath.value = path;
     isProfilePicPathSet.value = true;
   }
+
+  // save name and bio
+  var name = 'Soco'.obs;
+  var bio = 'Live Your Life'.obs;
+  updateData(String name, String bio) {
+    this.name.value = name;
+    this.bio.value = bio;
+    // print(name);
+    // print(bio);
+  }
+    
 }
