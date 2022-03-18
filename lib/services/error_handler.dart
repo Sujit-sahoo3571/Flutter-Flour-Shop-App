@@ -23,7 +23,7 @@ class ErrorHandler {
                     child: Text(e.message.toString()),
                   ),
                 ),
-                Container(
+                SizedBox(
                   height: 50.0,
                   child: Row(
                     children: [

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
 import 'package:flutter_flour_shop/pages/layout/gridproduct.dart';
 import 'package:flutter_flour_shop/pages/notification_page.dart';
-import 'package:flutter_flour_shop/services/authservice.dart';
-import 'package:flutter_flour_shop/services/products.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

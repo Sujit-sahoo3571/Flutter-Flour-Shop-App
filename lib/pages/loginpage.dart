@@ -11,7 +11,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final formKey = new GlobalKey<FormState>();
+  final formKey =  GlobalKey<FormState>();
 
   String email = '', password = '';
   Color green = Color(0xFF00AF19);
@@ -44,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: Text("LogIn page"),
       ),
-      body: Container(
+      body: SizedBox(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
         child: Form(
@@ -63,7 +63,7 @@ class _LoginPageState extends State<LoginPage> {
           SizedBox(
             height: 75.0,
           ),
-          Container(
+          SizedBox(
             height: 125.0,
             width: 200.0,
             child: Stack(
@@ -112,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
               focusedBorder:
                   UnderlineInputBorder(borderSide: BorderSide(color: green)),
             ),
-            onChanged: (value) => this.email = value,
+            onChanged: (value) => email = value,
             validator: (value) =>
                 value!.isEmpty ? 'Email is required ' : validateEmail(value),
           ),
@@ -128,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
                   UnderlineInputBorder(borderSide: BorderSide(color: green)),
             ),
             obscureText: true,
-            onChanged: (value) => this.password = value,
+            onChanged: (value) => password = value,
             validator: (value) =>
                 value!.isEmpty ? 'Password is required ' : null,
           ),
@@ -162,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
             onTap: () {
               if (checkField()) AuthServices().signIn(email, password, context);
             },
-            child: Container(
+            child: SizedBox(
               height: 50.0,
               child: Material(
                 borderRadius: BorderRadius.circular(25.0),
@@ -178,48 +178,6 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 20.0,
-          ),
-          GestureDetector(
-            onTap: () {},
-            child: Container(
-              height: 50.0,
-              color: Colors.transparent,
-              child: Container(
-                decoration: BoxDecoration(
-                  border: Border.all(
-                    color: Colors.black,
-                    style: BorderStyle.solid,
-                    width: 1.0,
-                  ),
-                  color: Colors.transparent,
-                  borderRadius: BorderRadius.circular(25.0),
-                ),
-                child:
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  // Center(
-                  //   child: ImageIcon(
-                  //     AssetImage('assets/images/google.png'),
-                  //     size: 15.0,
-
-                  //   ),
-                  // ),//  image blacked
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Center(
-                    child: Text(
-                      "Login with Google",
-                      style: TextStyle(
-                        fontFamily: "Trueno",
-                      ),
-                    ),
-                  ),
-                ]),
               ),
             ),
           ),

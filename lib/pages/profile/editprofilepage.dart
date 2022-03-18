@@ -13,6 +13,10 @@ class EditProfile extends StatelessWidget {
   File? pickedFile;
   ImagePicker imagePicker = ImagePicker();
 
+  //textcontroller
+  final nametext = TextEditingController();
+  final statustext = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,20 +33,15 @@ class EditProfile extends StatelessWidget {
                 child: Stack(
                   children: [
                     Obx(
-                      () =>
-
-                          // child:
-                          CircleAvatar(
+                      () => CircleAvatar(
                         radius: 60.0,
                         backgroundColor: Colors.grey,
-                        backgroundImage: _profileController
-                                    .isProfilePicPathSet.value ==
-                                true
-                            ? FileImage(File(
-                                    _profileController.profilePicPath.value))
-                                as ImageProvider
-                            : AssetImage("assets/images/manwoman/profilepic.png"),
-                       
+                        backgroundImage:
+                            _profileController.isProfilePicPathSet.value == true
+                                ? FileImage(File(_profileController
+                                    .profilePicPath.value)) as ImageProvider
+                                : AssetImage(
+                                    "assets/images/manwoman/profilepic.png"),
                       ),
                     ),
                     Positioned(
@@ -71,6 +70,7 @@ class EditProfile extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.all(10.0),
                         child: TextFormField(
+                          controller: nametext,
                           decoration: InputDecoration(
                               icon: Icon(
                                 Icons.person,
@@ -80,14 +80,18 @@ class EditProfile extends StatelessWidget {
                               label: Text("Name * "),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20.0))),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Please Enter Your Name ";
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       Container(
                         padding: EdgeInsets.all(10.0),
                         child: TextFormField(
-                          onSaved: (String? status) {
-                            // _profileController.saveForm("cool", status);
-                          },
+                          controller: statustext,
                           decoration: InputDecoration(
                               icon: Icon(
                                 Icons.messenger,
@@ -97,6 +101,12 @@ class EditProfile extends StatelessWidget {
                               label: Text("Status * "),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(20.0))),
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Please Enter Something About You ";
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       SizedBox(
@@ -105,7 +115,15 @@ class EditProfile extends StatelessWidget {
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               minimumSize: Size(100.0, 40.0)),
-                          onPressed: () {},
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              _profileController.updateData(
+                                  nametext.text, statustext.text);
+                              Get.snackbar("Save Data", "Success");
+                              _formKey.currentState!.reset();
+                              Navigator.of(context).pop();
+                            }
+                          },
                           child: Text("Save"))
                     ],
                   ))
@@ -126,7 +144,7 @@ class EditProfile extends StatelessWidget {
                 height: 80.0,
                 child: ListTile(
                   onTap: () {
-                    takePhoto(ImageSource.gallery);                 
+                    takePhoto(ImageSource.gallery);
                   },
                   leading: Icon(Icons.photo, size: 50.0),
                   title: Text("Gallery"),
