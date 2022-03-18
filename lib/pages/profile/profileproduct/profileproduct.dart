@@ -42,7 +42,9 @@ class ProfileProduct extends StatelessWidget {
                       () => CircleAvatar(
                         backgroundColor: Colors.grey,
                         backgroundImage:
+
                             _profileController.isProfilePicPathSet.value == true
+
                                 ? FileImage(File(_profileController
                                     .profilePicPath.value)) as ImageProvider
                                 : AssetImage(
