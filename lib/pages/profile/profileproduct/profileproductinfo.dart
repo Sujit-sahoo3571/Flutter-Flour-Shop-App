@@ -84,8 +84,8 @@ class ProfileProductInfo extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20.0),
                   )),
               onPressed: () {
-                // _cartController.addProduct(items)
-                Get.to(() => Ecart());
+                addProductItem(items);
+                Get.off(() => Ecart());
               },
               child: Text("ADD TO CART")),
         ]),
@@ -110,4 +110,12 @@ class ProfileProductInfo extends StatelessWidget {
           count: items.image.length,
         ),
       );
+
+  void addProductItem(NewArrival item) {
+    final EItems items;
+    items = EItems(
+        id: item.id, img: item.image[0], name: item.name, price: item.price);
+    _cartController.addItemsProduct(items);
+    print(items);
+  }
 }

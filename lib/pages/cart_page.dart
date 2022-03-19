@@ -16,7 +16,7 @@ class CartPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("CART"),
+          title: Text("Grocery Product Cart"),
           centerTitle: true,
           actions: [
             IconButton(
@@ -26,10 +26,13 @@ class CartPage extends StatelessWidget {
                 icon: Icon(Icons.shopping_cart))
           ],
         ),
-        body: ListView(children: [
-          CartProduct(),
-          CartTotal(),
-        ]),
+        body: SingleChildScrollView(
+            child: Column(
+          children: [
+            CartProduct(),
+            CartTotal(),
+          ],
+        )),
       ),
     );
   }

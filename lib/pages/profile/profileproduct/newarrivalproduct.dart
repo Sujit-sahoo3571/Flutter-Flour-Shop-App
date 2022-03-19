@@ -27,6 +27,16 @@ class ProductOfProducts {
       required this.product});
 }
 
+//items cart
+class EItems {
+  final id;
+  final img;
+  final name;
+  final price;
+
+  EItems({required this.id,required this.img,required this.name,required this.price}); 
+}
+
 List<NewArrival> phones = [
   NewArrival(
     id: 1,
