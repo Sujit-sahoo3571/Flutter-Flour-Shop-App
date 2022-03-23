@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/pages/cart_page.dart';
 import 'package:flutter_flour_shop/pages/loginpage.dart';
 import 'package:flutter_flour_shop/services/error_handler.dart';
+import 'package:get/get.dart';
 
 class AuthServices {
 // Determine if user is authenticated
@@ -11,7 +12,6 @@ class AuthServices {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
-            // isLogIn = true;
             return CartPage(); //HomePage()
           } else {
             return LoginPage();
@@ -20,7 +20,6 @@ class AuthServices {
   }
 
   //sign out
-
   signOut() {
     FirebaseAuth.instance.signOut();
   }
@@ -47,8 +46,10 @@ class AuthServices {
     FirebaseAuth.instance.sendPasswordResetEmail(email: email);
   }
 
+  String? email = FirebaseAuth.instance.currentUser?.email;
   bool loginCheck() {
     if (FirebaseAuth.instance.currentUser?.uid != null) {
+      print(FirebaseAuth.instance.currentUser?.email);
       return true;
     } else {
       return false;

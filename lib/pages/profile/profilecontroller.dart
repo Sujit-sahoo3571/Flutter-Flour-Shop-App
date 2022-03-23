@@ -23,7 +23,7 @@ class ProfileController extends GetxController {
   }
 
   // save name and bio
-  var name = 'Soco'.obs;
+  var name = 'UnKnownUser'.obs;
   var bio = 'Live Your Life'.obs;
   updateData(String name, String bio) {
     this.name.value = name;

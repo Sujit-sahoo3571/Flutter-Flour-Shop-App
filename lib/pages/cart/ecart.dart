@@ -81,7 +81,7 @@ class Ecart extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20.0))),
                 onPressed: () {
-                   if (_cartController.itemsTotal != '0.0') {
+                  if (_cartController.itemsTotal != '0.0') {
                     // print(AuthServices.isLogIn);
                     print(AuthServices().loginCheck());
                     if (!AuthServices().loginCheck()) {

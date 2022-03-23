@@ -92,5 +92,5 @@ class CartController extends GetxController {
     _newItems.clear();
   }
 
-  var _totalOrders = {}.obs;
+ 
 }
