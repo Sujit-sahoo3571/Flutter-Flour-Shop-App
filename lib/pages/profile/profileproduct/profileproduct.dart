@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
 import 'package:flutter_flour_shop/pages/profile/editprofilepage.dart';
@@ -7,7 +6,6 @@ import 'package:flutter_flour_shop/pages/profile/profilecontroller.dart';
 import 'package:flutter_flour_shop/pages/profile/profilepage.dart';
 import 'package:flutter_flour_shop/pages/profile/profileproduct/newarrivalproduct.dart';
 import 'package:flutter_flour_shop/pages/profile/profileproduct/profileproductdescriptions.dart';
-import 'package:flutter_flour_shop/pages/profile/profileproduct/purchasedetails.dart';
 import 'package:get/get.dart';
 
 class ProfileProduct extends StatelessWidget {
@@ -36,7 +34,6 @@ class ProfileProduct extends StatelessWidget {
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Obx(
                       () => CircleAvatar(
@@ -50,43 +47,23 @@ class ProfileProduct extends StatelessWidget {
                         minRadius: 50.0,
                       ),
                     ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        IconButton(
-                          icon: Icon(
-                            Icons.inventory,
-                            size: 50.0,
-                            color: Colors.yellow,
-                          ),
-                          onPressed: () {
-                            Get.to(() => PurchaseDetails());
-                          },
-                        ),
-                        SizedBox(
-                          height: 10.0,
-                        ),
-                        MyFonts(
-                          text: "Purchase Details",
-                          size: 12.0,
-                        )
-                      ],
-                    )
                   ],
                 ),
                 SizedBox(
                   height: 7.0,
                 ),
                 Container(
+                  padding: EdgeInsets.all(5.0),
                     alignment: Alignment.topLeft,
                     child: Obx(
                       () => MyFonts(
                         text: _profileController.name.value,
-                        bold: true,
-                        size: 22.0,
+                        // bold: true,
+                        size: 18.0,
                       ),
                     )),
                 Container(
+                  padding: EdgeInsets.all(5.0),
                     alignment: Alignment.topLeft,
                     child:
                         Obx(() => MyFonts(text: _profileController.bio.value))),
