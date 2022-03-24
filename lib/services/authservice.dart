@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_flour_shop/pages/cart/ecart.dart';
 import 'package:flutter_flour_shop/pages/cart_page.dart';
 import 'package:flutter_flour_shop/pages/loginpage.dart';
+import 'package:flutter_flour_shop/pages/profile/editprofilepage.dart';
 import 'package:flutter_flour_shop/services/error_handler.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +15,29 @@ class AuthServices {
         builder: (BuildContext context, snapshot) {
           if (snapshot.hasData) {
             return CartPage(); //HomePage()
+          } else {
+            return LoginPage();
+          }
+        });
+  }
+  //second e-cart
+   handleEAuth() {
+    return StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (BuildContext context, snapshot) {
+          if (snapshot.hasData) {
+            return Ecart(); //HomePage()
+          } else {
+            return LoginPage();
+          }
+        });
+  }
+   handleEditAuth() {
+    return StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (BuildContext context, snapshot) {
+          if (snapshot.hasData) {
+            return EditProfile(); //HomePage()
           } else {
             return LoginPage();
           }
