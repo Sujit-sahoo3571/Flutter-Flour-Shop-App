@@ -2,9 +2,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
-import 'package:flutter_flour_shop/pages/notification_page.dart';
+import 'package:flutter_flour_shop/pages/drawerpage/aboutus.dart';
+import 'package:flutter_flour_shop/pages/drawerpage/chatwithus.dart';
+import 'package:flutter_flour_shop/pages/drawerpage/jobs.dart';
+import 'package:flutter_flour_shop/pages/drawerpage/orderhistory.dart';
+import 'package:flutter_flour_shop/pages/drawerpage/notification_page.dart';
+import 'package:flutter_flour_shop/pages/drawerpage/updatenews.dart';
+import 'package:flutter_flour_shop/pages/profile/editprofilepage.dart';
 import 'package:flutter_flour_shop/pages/profile/profilecontroller.dart';
-import 'package:flutter_flour_shop/pages/profile/profileproduct/profileproduct.dart';
 import 'package:flutter_flour_shop/services/authservice.dart';
 import 'package:get/get.dart';
 
@@ -25,10 +30,10 @@ class NavigationDrawer extends StatelessWidget {
                 const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
             children: [
               const SizedBox(
-                height: 30.0,
+                height: 20.0,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Obx(
                     () => CircleAvatar(
@@ -40,26 +45,33 @@ class NavigationDrawer extends StatelessWidget {
                                   File(_profileController.profilePicPath.value))
                               as ImageProvider
                           : AssetImage("assets/images/manwoman/profilepic.png"),
-                      minRadius: 50.0,
+                      minRadius: 40.0,
                     ),
                   ),
+                  sizebox,
                   Obx(
-                    () => Column(
-                      children: [
-                        MyFonts(
-                          text: _profileController.name.value,
-                          color: Colors.white,
-                        ),
-                        sizebox,
-                        MyFonts(
-                          text:
-                              ' ${AuthServices().loginCheck() ? AuthServices().email! : ""}',
-                          color: Colors.white,
-                        ),
-                      ],
+                    () => SizedBox(
+                      width: 150.0,
+                      child: MyFonts(
+                        text: ' Hello! , ${_profileController.name.value}',
+                        color: Colors.white,
+                      ),
                     ),
                   )
                 ],
+              ),
+              sizebox,
+              Obx(
+                () => MyFonts(
+                  text: _profileController.bio.value,
+                  color: Colors.white,
+                ),
+              ),
+              sizebox,
+              MyFonts(
+                text:
+                    ' ${AuthServices().loginCheck() ? "Email: ${AuthServices().email}" : ''}',
+                color: Colors.white,
               ),
               sizebox,
               Divider(
@@ -67,18 +79,20 @@ class NavigationDrawer extends StatelessWidget {
               ),
               sizebox,
               buildmenuItem(
-                  text: "Peoples",
-                  icon: Icons.people,
+                  text: "Profile",
+                  icon: Icons.person,
                   onClicked: () => selectedItem(context, 0)),
-              sizebox,
-              buildmenuItem(text: "favorite", icon: Icons.favorite),
               sizebox,
               buildmenuItem(
                 text: "Orders",
                 icon: Icons.shopping_cart,
+                onClicked: () => selectedItem(context, 1),
               ),
               sizebox,
-              buildmenuItem(text: "About Us", icon: Icons.info),
+              buildmenuItem(
+                  text: "About Us",
+                  icon: Icons.info,
+                  onClicked: () => selectedItem(context, 2)),
               const SizedBox(
                 height: 20.0,
               ),
@@ -86,14 +100,28 @@ class NavigationDrawer extends StatelessWidget {
                 color: Colors.white70,
               ),
               sizebox,
-              buildmenuItem(text: "PlugIn", icon: Icons.account_tree_outlined),
-              sizebox,
               buildmenuItem(
                   text: "Notifications",
                   icon: Icons.notifications_on_outlined,
-                  onClicked: () => selectedItem(context, 5)),
+                  onClicked: () => selectedItem(context, 3)),
               sizebox,
-              buildmenuItem(text: "Updates", icon: Icons.update_rounded),
+              buildmenuItem(
+                text: "Jobs",
+                icon: Icons.card_travel,
+                onClicked: () => selectedItem(context, 4),
+              ),
+              sizebox,
+              buildmenuItem(
+                text: "Updates",
+                icon: Icons.update_rounded,
+                onClicked: () => selectedItem(context, 5),
+              ),
+               sizebox,
+              buildmenuItem(
+                text: "Chat",
+                icon: Icons.message,
+                onClicked: () => selectedItem(context, 6),
+              ),
               sizebox,
               Divider(
                 color: Colors.white,
@@ -109,6 +137,7 @@ class NavigationDrawer extends StatelessWidget {
                   onPressed: () {
                     // Get.to(ProfilePage());
                     if (AuthServices().loginCheck()) {
+                      Navigator.of(context).pop();
                       AuthServices().signOut();
                       Get.snackbar("Sign Out", "You Logged Out Successfully");
                     } else {
@@ -147,11 +176,27 @@ class NavigationDrawer extends StatelessWidget {
     Navigator.of(context).pop();
     switch (i) {
       case 0:
-        Get.to(ProfileProduct());
+        Get.to(EditProfile());
         break;
-      case 5:
+      case 1:
+        Get.to(OrderHistory());
+        break;
+      case 2:
+        Get.to(AboutUs());
+        break;
+      case 3:
         Get.to(NotificationPage());
         break;
+      case 4:
+        Get.to(JobPortals());
+        break;
+      case 5:
+        Get.to(UpdateNews());
+        break;
+         case 6:
+        Get.to(ChatWithUs());
+        break;
+        
       default:
     }
   }

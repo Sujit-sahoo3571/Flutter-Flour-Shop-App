@@ -85,7 +85,8 @@ class Ecart extends StatelessWidget {
                     // print(AuthServices.isLogIn);
                     print(AuthServices().loginCheck());
                     if (!AuthServices().loginCheck()) {
-                      Get.to(AuthServices().handleAuth());
+                      Navigator.of(context).pop();
+                      Get.to(AuthServices().handleEAuth());
                     } else {
                       //CLEAR LIST
                       _cartController.itemsEmpty();

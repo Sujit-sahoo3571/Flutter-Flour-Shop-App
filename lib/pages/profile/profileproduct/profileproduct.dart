@@ -1,7 +1,5 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
-import 'package:flutter_flour_shop/pages/profile/editprofilepage.dart';
 import 'package:flutter_flour_shop/pages/profile/profilecontroller.dart';
 import 'package:flutter_flour_shop/pages/profile/profilepage.dart';
 import 'package:flutter_flour_shop/pages/profile/profileproduct/newarrivalproduct.dart';
@@ -17,7 +15,7 @@ class ProfileProduct extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text("Your Profile"),
+          title: Text("Electronic Products"),
           centerTitle: true,
           actions: [
             IconButton(
@@ -25,7 +23,6 @@ class ProfileProduct extends StatelessWidget {
                   Get.to(ProfilePage());
                 },
                 icon: Icon(Icons.person)),
-            IconButton(onPressed: () {}, icon: Icon(Icons.message)),
           ],
         ),
         body: SingleChildScrollView(
@@ -33,56 +30,6 @@ class ProfileProduct extends StatelessWidget {
             padding: EdgeInsets.all(10.0),
             child: Column(
               children: [
-                Row(
-                  children: [
-                    Obx(
-                      () => CircleAvatar(
-                        backgroundColor: Colors.grey,
-                        backgroundImage:
-                            _profileController.isProfilePicPathSet.value == true
-                                ? FileImage(File(_profileController
-                                    .profilePicPath.value)) as ImageProvider
-                                : AssetImage(
-                                    "assets/images/manwoman/profilepic.png"),
-                        minRadius: 50.0,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 7.0,
-                ),
-                Container(
-                  padding: EdgeInsets.all(5.0),
-                    alignment: Alignment.topLeft,
-                    child: Obx(
-                      () => MyFonts(
-                        text: _profileController.name.value,
-                        // bold: true,
-                        size: 18.0,
-                      ),
-                    )),
-                Container(
-                  padding: EdgeInsets.all(5.0),
-                    alignment: Alignment.topLeft,
-                    child:
-                        Obx(() => MyFonts(text: _profileController.bio.value))),
-                SizedBox(
-                  height: 7.0,
-                ),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.white,
-                      onPrimary: Colors.black,
-                      minimumSize: Size(250.0, 42.0),
-                    ),
-                    onPressed: () {
-                      Get.to(() => EditProfile());
-                    },
-                    child: Text("Edit Profile")),
-                SizedBox(
-                  height: 7.0,
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -103,6 +50,26 @@ class ProfileProduct extends StatelessWidget {
                     alignment: Alignment.topLeft,
                     child: MyFonts(
                       text: "Also Availible",
+                      color: Colors.green,
+                    )),
+                Container(
+                    padding: EdgeInsets.all(7.0),
+                    height: 230.0,
+                    child: scrollnames(otherstuffs)),
+                Container(
+                    alignment: Alignment.topLeft,
+                    child: MyFonts(
+                      text: "New Products",
+                      color: Colors.green,
+                    )),
+                Container(
+                    padding: EdgeInsets.all(7.0),
+                    height: 230.0,
+                    child: scrollnames(otherstuffs)),
+                Container(
+                    alignment: Alignment.topLeft,
+                    child: MyFonts(
+                      text: "Now On Sales",
                       color: Colors.green,
                     )),
                 Container(

@@ -71,6 +71,7 @@ class EditProfile extends StatelessWidget {
                         padding: EdgeInsets.all(10.0),
                         child: TextFormField(
                           controller: nametext,
+                          maxLength: 10,
                           decoration: InputDecoration(
                               icon: Icon(
                                 Icons.person,
@@ -91,6 +92,7 @@ class EditProfile extends StatelessWidget {
                       Container(
                         padding: EdgeInsets.all(10.0),
                         child: TextFormField(
+                          maxLength: 20,
                           controller: statustext,
                           decoration: InputDecoration(
                               icon: Icon(
@@ -118,7 +120,7 @@ class EditProfile extends StatelessWidget {
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               _profileController.updateData(
-                                  nametext.text, statustext.text);
+                                  nametext.text.toUpperCase(), statustext.text);
                               Get.snackbar("Save Data", "Success");
                               _formKey.currentState!.reset();
                               Navigator.of(context).pop();

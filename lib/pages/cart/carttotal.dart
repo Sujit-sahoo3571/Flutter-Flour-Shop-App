@@ -38,9 +38,9 @@ class CartTotal extends StatelessWidget {
             // orderButton(),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0),
-                  ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
                     primary: Colors.green,
                     onPrimary: Colors.white,
                     minimumSize: Size(160.0, 45.0)),
@@ -49,6 +49,7 @@ class CartTotal extends StatelessWidget {
                     // print(AuthServices.isLogIn);
                     print(AuthServices().loginCheck());
                     if (!AuthServices().loginCheck()) {
+                      Navigator.of(context).pop();
                       Get.to(AuthServices().handleAuth());
                     } else {
                       //CLEAR LIST

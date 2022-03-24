@@ -16,7 +16,7 @@ class _NavigationPageState extends State<NavigationPage> {
   final items = <Widget>[
     Icon(Icons.home, size: 30.0),
     Icon(Icons.shopping_cart, size: 30.0),
-    Icon(Icons.person, size: 30.0),
+    Icon(Icons.category, size: 30.0),
   ];
 
   final _selectedPages = <Widget>[
