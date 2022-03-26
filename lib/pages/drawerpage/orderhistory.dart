@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
 
 class OrderHistory extends StatelessWidget {
   const OrderHistory({ Key? key }) : super(key: key);
@@ -12,7 +13,7 @@ class OrderHistory extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text("No Orders Till Now"),
+            Center(child: MyFonts(text: "Order History is Empty!", size: 20.0,)),
           ],
         ),
       ),

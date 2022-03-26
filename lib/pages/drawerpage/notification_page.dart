@@ -17,10 +17,13 @@ class NotificationPage extends StatelessWidget {
       body: Container(
         height: 130.0,
         margin: EdgeInsets.all(10.0),
+        padding: EdgeInsets.all(10.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15.0),
           color: Colors.blue,
         ),
+        child:
+            Center(child: MyFonts(text: "You Win a Scratch Card Worth Rs. 3000 Redeem Now!", color: Colors.white,)),
       ),
     );
   }
