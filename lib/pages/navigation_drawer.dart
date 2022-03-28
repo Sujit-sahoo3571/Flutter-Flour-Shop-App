@@ -1,5 +1,5 @@
-import 'dart:io';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
 import 'package:flutter_flour_shop/pages/drawerpage/aboutus.dart';
@@ -9,16 +9,36 @@ import 'package:flutter_flour_shop/pages/drawerpage/orderhistory.dart';
 import 'package:flutter_flour_shop/pages/drawerpage/notification_page.dart';
 import 'package:flutter_flour_shop/pages/drawerpage/updatenews.dart';
 import 'package:flutter_flour_shop/pages/profile/editprofilepage.dart';
-import 'package:flutter_flour_shop/pages/profile/profilecontroller.dart';
 import 'package:flutter_flour_shop/services/authservice.dart';
 import 'package:get/get.dart';
 
-class NavigationDrawer extends StatelessWidget {
-  NavigationDrawer({Key? key}) : super(key: key);
-  final ProfileController _profileController = Get.put(ProfileController());
+class NavigationDrawer extends StatefulWidget {
+  const NavigationDrawer({Key? key}) : super(key: key);
+
+  @override
+  State<NavigationDrawer> createState() => _NavigationDrawerState();
+}
+
+class _NavigationDrawerState extends State<NavigationDrawer> {
+  // final ProfileController _profileController = Get.put(ProfileController());
+
   final sizebox = const SizedBox(
     height: 16.0,
   );
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  @override
+  void initState() {
+    if (AuthServices().loginCheck()) getUser();
+    super.initState();
+  }
+
+  String name = 'user';
+  String image =
+      'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
+  String bio = 'onoloeo';
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -35,37 +55,36 @@ class NavigationDrawer extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Obx(
-                    () => CircleAvatar(
-                      backgroundColor: Colors.grey,
-                      backgroundImage: _profileController
-                                  .isProfilePicPathSet.value ==
-                              true
-                          ? FileImage(
-                                  File(_profileController.profilePicPath.value))
-                              as ImageProvider
-                          : AssetImage("assets/images/manwoman/profilepic.png"),
-                      minRadius: 40.0,
-                    ),
+                  InkWell(
+                    onTap: () {},
+                    child: AuthServices().loginCheck()
+                        ? CircleAvatar(
+                            backgroundColor: Colors.grey,
+                            backgroundImage: NetworkImage(image),
+                            minRadius: 40.0,
+                          )
+                        : const CircleAvatar(
+                            backgroundColor: Colors.grey,
+                            backgroundImage: NetworkImage(
+                                'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'),
+                            minRadius: 40.0,
+                            // ),
+                          ),
                   ),
                   sizebox,
-                  Obx(
-                    () => SizedBox(
-                      width: 150.0,
-                      child: MyFonts(
-                        text: ' Hello! , ${_profileController.name.value}',
-                        color: Colors.white,
-                      ),
+                  SizedBox(
+                    width: 150.0,
+                    child: MyFonts(
+                      text: ' Hello! $name',
+                      color: Colors.white,
                     ),
                   )
                 ],
               ),
               sizebox,
-              Obx(
-                () => MyFonts(
-                  text: _profileController.bio.value,
-                  color: Colors.white,
-                ),
+              MyFonts(
+                text: "bio: $bio",
+                color: Colors.white,
               ),
               sizebox,
               MyFonts(
@@ -116,7 +135,7 @@ class NavigationDrawer extends StatelessWidget {
                 icon: Icons.update_rounded,
                 onClicked: () => selectedItem(context, 5),
               ),
-               sizebox,
+              sizebox,
               buildmenuItem(
                 text: "Chat",
                 icon: Icons.message,
@@ -193,11 +212,26 @@ class NavigationDrawer extends StatelessWidget {
       case 5:
         Get.to(UpdateNews());
         break;
-         case 6:
+      case 6:
         Get.to(ChatWithUs());
         break;
-        
+
       default:
     }
+  }
+
+  void getUser() async {
+    DocumentSnapshot snap =
+        await _firestore.collection('Users').doc(_auth.currentUser!.uid).get();
+
+    String username = (snap.data() as Map<String, dynamic>)['username'];
+    String ubio = (snap.data() as Map<String, dynamic>)['bio'];
+    String uimage = (snap.data() as Map<String, dynamic>)['image'];
+
+    setState(() {
+      name = username;
+      image = uimage;
+      bio = ubio;
+    });
   }
 }

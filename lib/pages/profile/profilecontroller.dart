@@ -13,23 +13,4 @@ class ProfileController extends GetxController {
 
   int follower() => friends.length;
 
-  //image picker
-  var isProfilePicPathSet = false.obs;
-  var profilePicPath = ''.obs;
-
-  void setProfilePicPath(String path) {
-    profilePicPath.value = path;
-    isProfilePicPathSet.value = true;
-  }
-
-  // save name and bio
-  var name = 'USER'.obs;
-  var bio = ''.obs;
-  updateData(String name, String bio) {
-    this.name.value = name;
-    this.bio.value = bio;
-    // print(name);
-    // print(bio);
-  }
-    
 }
