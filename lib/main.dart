@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(GetMaterialApp(
+  runApp(const GetMaterialApp(
     home: MyApp(),
     debugShowCheckedModeBanner: false,
   ));
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Flutter Flour Shop",
       home: SplashScreen(),

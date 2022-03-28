@@ -30,11 +30,11 @@ class _ChatWithUsState extends State<ChatWithUs> {
     Message(
         text: "We are working on it so it'll be available Soon\n"
             " also we want you to visit our store which is near you\n"
-            " In order to check the quality of products",
+            " In order to check the quality of the products",
         date: DateTime.now().subtract(Duration(days: 4, minutes: 5)),
         isSentbyMe: false),
     Message(
-        text: "I Pickup the Wrong Product What should I do?",
+        text: "I Pickedup the Wrong Product What should I do?",
         date: DateTime.now().subtract(Duration(days: 3, minutes: 1)),
         isSentbyMe: true),
     Message(
@@ -55,7 +55,7 @@ class _ChatWithUsState extends State<ChatWithUs> {
     Message(
         text:
             "For Recommendation or queries Send us Your suggestions in our About Page"
-            "We Love To Hear From You, Thank You For Your Time !",
+            " We Love To Hear From You, Thank You For Your Time !",
         date: DateTime.now().subtract(Duration(minutes: 10)),
         isSentbyMe: false),
   ].toList();

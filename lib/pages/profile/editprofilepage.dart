@@ -1,21 +1,38 @@
-import 'dart:io';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:flutter_flour_shop/pages/profile/profilecontroller.dart';
+import 'package:flutter_flour_shop/pages/admin/storage/stroragemethods.dart';
+import 'package:flutter_flour_shop/services/authservice.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-class EditProfile extends StatelessWidget {
-  final ProfileController _profileController = Get.put(ProfileController());
-  EditProfile({Key? key}) : super(key: key);
+class EditProfile extends StatefulWidget {
+  const EditProfile({Key? key}) : super(key: key);
+
+  @override
+  State<EditProfile> createState() => _EditProfileState();
+}
+
+class _EditProfileState extends State<EditProfile> {
   final _formKey = GlobalKey<FormState>();
 
   // file
-  File? pickedFile;
-  ImagePicker imagePicker = ImagePicker();
+  Uint8List? _image;
 
   //textcontroller
   final nametext = TextEditingController();
+
   final statustext = TextEditingController();
+
+  String imageUrl =
+      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png";
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    statustext.dispose();
+    nametext.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,18 +49,17 @@ class EditProfile extends StatelessWidget {
               Center(
                 child: Stack(
                   children: [
-                    Obx(
-                      () => CircleAvatar(
-                        radius: 60.0,
-                        backgroundColor: Colors.grey,
-                        backgroundImage:
-                            _profileController.isProfilePicPathSet.value == true
-                                ? FileImage(File(_profileController
-                                    .profilePicPath.value)) as ImageProvider
-                                : AssetImage(
-                                    "assets/images/manwoman/profilepic.png"),
-                      ),
-                    ),
+                    _image != null
+                        ? CircleAvatar(
+                            radius: 60.0,
+                            backgroundColor: Colors.grey,
+                            backgroundImage: MemoryImage(_image!))
+                        : const CircleAvatar(
+                            radius: 60.0,
+                            backgroundColor: Colors.grey,
+                            backgroundImage: NetworkImage(
+                                "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"),
+                          ),
                     Positioned(
                         left: 60.0,
                         bottom: 10.0,
@@ -53,8 +69,8 @@ class EditProfile extends StatelessWidget {
                             size: 40.0,
                             color: Colors.grey,
                           ),
-                          onPressed: () {
-                            showCameraOption(context);
+                          onPressed: () async {
+                            selectImage();
                           },
                         ))
                   ],
@@ -117,13 +133,21 @@ class EditProfile extends StatelessWidget {
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               minimumSize: Size(100.0, 40.0)),
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              _profileController.updateData(
-                                  nametext.text.toUpperCase(), statustext.text);
+                          onPressed: () async {
+                            if (_formKey.currentState!.validate() &&
+                                AuthServices().loginCheck()) {
+                              // add user to data base
+                              StorageMethods().addUserToDataBase(
+                                  nametext.text.toUpperCase(),
+                                  statustext.text,
+                                  imageUrl);
                               Get.snackbar("Save Data", "Success");
                               _formKey.currentState!.reset();
                               Navigator.of(context).pop();
+                            } else if (!AuthServices().loginCheck()) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text("Log In First")));
                             }
                           },
                           child: Text("Save"))
@@ -136,41 +160,32 @@ class EditProfile extends StatelessWidget {
     );
   }
 
-  Future<dynamic> showCameraOption(BuildContext context) {
-    return showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Wrap(
-            children: [
-              SizedBox(
-                height: 80.0,
-                child: ListTile(
-                  onTap: () {
-                    takePhoto(ImageSource.gallery);
-                  },
-                  leading: Icon(Icons.photo, size: 50.0),
-                  title: Text("Gallery"),
-                ),
-              ),
-              // ListTile(
-              //   onTap: () {
-              //     takePhoto(ImageSource.camera);
-              //     // Navigator.of(context).pop();
-              //   },
-              //   leading: Icon(Icons.photo_camera),
-              //   title: Text("Camera"),
-              // ), // Not Working Properly for Now !
-            ],
-          );
-        });
+  void selectImage() async {
+    try {
+      Uint8List im = await pickImage(
+        ImageSource.gallery,
+      );
+      setState(() {
+        _image = im;
+      });
+    } catch (e) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("NO File Selected")));
+    }
   }
 
-  Future<void> takePhoto(ImageSource source) async {
-    final pickedImage =
-        await imagePicker.pickImage(source: source, imageQuality: 50);
-    if (pickedImage == null) return;
-    pickedFile = File(pickedImage.path);
-    _profileController.setProfilePicPath(pickedFile!.path);
-    Get.back();
+  pickImage(ImageSource source) async {
+    final ImagePicker _picker = ImagePicker();
+
+    XFile? _file = await _picker.pickImage(source: source);
+    if (_file != null) {
+      var image = await _file.readAsBytes();
+      imageUrl =
+          await StorageMethods().uploadImgeToStorage("ProfilePics", image);
+
+      return image;
+    }
+
+    print("Image not Selected ");
   }
 }

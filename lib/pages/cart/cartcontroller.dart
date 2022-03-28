@@ -92,5 +92,4 @@ class CartController extends GetxController {
     _newItems.clear();
   }
 
- 
 }

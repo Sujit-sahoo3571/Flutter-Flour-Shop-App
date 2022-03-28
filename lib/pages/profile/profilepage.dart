@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_flour_shop/fontstyles/textstyles.dart';
 import 'package:flutter_flour_shop/pages/profile/editprofilepage.dart';
@@ -46,18 +44,18 @@ class ProfilePage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Obx(
-                      () => CircleAvatar(
-                        backgroundColor: Colors.grey,
-                        backgroundImage:
-                            _profileController.isProfilePicPathSet.value == true
-                                ? FileImage(File(_profileController
-                                    .profilePicPath.value)) as ImageProvider
-                                : AssetImage(
-                                    "assets/images/manwoman/profilepic.png"),
-                        minRadius: 50.0,
-                      ),
-                    ),
+                    // Obx(
+                    //   () => CircleAvatar(
+                    //     backgroundColor: Colors.grey,
+                    //     backgroundImage:
+                    //         _profileController.isProfilePicPathSet.value == true
+                    //             ? FileImage(File(_profileController
+                    //                 .profilePicPath.value)) as ImageProvider
+                    //             : AssetImage(
+                    //                 "assets/images/manwoman/profilepic.png"),
+                    //     minRadius: 50.0,
+                    //   ),
+                    // ),
                     Obx(() => followers(
                         '${_profileController.follower()}', "Followers")),
                     Obx(() => followers(
@@ -70,18 +68,20 @@ class ProfilePage extends StatelessWidget {
                 Container(
                     margin: EdgeInsets.all(5.0),
                     alignment: Alignment.topLeft,
-                    child: Obx(
-                      () =>
-                          // child:
-                          MyFonts(
-                        text: _profileController.name.value,
-                        bold: true,
-                        size: 22.0,
-                      ),
-                    )),
+                    // child: Obx(
+                    //   () =>
+                    //       // child:
+                    //       MyFonts(
+                    //     text: _profileController.name.value,
+                    //     bold: true,
+                    //     size: 22.0,
+                    //   ),
+                    // )
+                    ),
                 Container(
                     alignment: Alignment.topLeft,
-                    child: Obx(()=>MyFonts(text: _profileController.bio.value))),
+                    // child: Obx(()=>MyFonts(text: _profileController.bio.value))
+                    ),
                 SizedBox(
                   height: 7.0,
                 ),
