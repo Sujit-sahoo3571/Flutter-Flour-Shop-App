@@ -7,6 +7,7 @@ import 'package:flutter_flour_shop/pages/drawerpage/chatwithus.dart';
 import 'package:flutter_flour_shop/pages/drawerpage/jobs.dart';
 import 'package:flutter_flour_shop/pages/drawerpage/orderhistory.dart';
 import 'package:flutter_flour_shop/pages/drawerpage/notification_page.dart';
+import 'package:flutter_flour_shop/pages/drawerpage/payments.dart';
 import 'package:flutter_flour_shop/pages/drawerpage/updatenews.dart';
 import 'package:flutter_flour_shop/pages/profile/editprofilepage.dart';
 import 'package:flutter_flour_shop/services/authservice.dart';
@@ -215,7 +216,6 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
       case 6:
         Get.to(ChatWithUs());
         break;
-
       default:
     }
   }
