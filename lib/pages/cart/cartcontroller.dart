@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_flour_shop/pages/profile/profileproduct/newarrivalproduct.dart';
 import 'package:flutter_flour_shop/services/products.dart';
 import 'package:get/get.dart';
@@ -92,4 +93,13 @@ class CartController extends GetxController {
     _newItems.clear();
   }
 
+  double payamount() {
+    double x = double.tryParse(total.toString()) ?? 0.0;
+    return x * 100;
+  }
+
+  double epayamount() {
+    double x = double.tryParse(itemsTotal.toString()) ?? 0.0;
+    return x * 100;
+  }
 }
